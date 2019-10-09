@@ -15,59 +15,59 @@ nor do they reduce any biohazardous outbreaks from happening. Locked concerns ar
 tree and the biohazard level of the facility that has been achieved.
 
 ## Air System
-airSystem: not_locked\
-gaskets: not_locked\
-airPressure: not_locked\
-filters: locked\
-generatorFeeds: locked
+airSystem: not locked\
+###gaskets: not locked\
+###airPressure: not locked\
+###filters: locked\
+###generatorFeeds: locked
 
 ## Biologicals
-biologicals: not_locked\
-researchTree: not_locked\
-biologicalProperties: not_locked\
-outbreakProgression: not_locked
+###biologicals: not locked\
+###researchTree: not locked\
+###biologicalProperties: not locked\
+###outbreakProgression: not locked
 
 ## Budget
-budget: not_locked\
-grants: not_locked\
-accounting: not_locked\
-salaries: not_locked\
-kickbacks: not_locked\
-embezzlement: not_locked
+###budget: not locked\
+###grants: not locked\
+###accounting: not locked\
+###salaries: not locked\
+###kickbacks: not locked\
+###embezzlement: not locked
 
 ## Decontamination
-decontamination: not_locked\
-suits: locked\
-showers: locked\
-protocols: not_locked
+###decontamination: not locked\
+###suits: locked\
+###showers: locked\
+###protocols: not locked
 
 ## Electricity
-electricity: not_locked\
-freezers: not_locked\
-boilers: locked\
-backupGenerators: locked\
-aboveGroundLines: locked\
-belowGroundLines: not_locked
+###electricity: not locked\
+###freezers: not locked\
+###boilers: locked\
+###backupGenerators: locked\
+###aboveGroundLines: locked\
+###belowGroundLines: not locked
 
 ## Employees
-employees : not_locked\
-scientists : not_locked\
-jrScientists : not_locked\
-srScientists : locked\
-facilitiesEngineering : not_locked\
-administration : not_locked
+###employees : not locked\
+###scientists : not locked\
+###jrScientists : not locked\
+###srScientists : locked\
+###facilitiesEngineering : not locked\
+###administration : not locked
 
 ## Equipment
-equipment: not_locked\
-centrifuges: not_locked\
-freezers: locked\
-hotPlates: locked\
-tickColonies: locked\
-incubators: locked\
-pipettes: not_locked
+###equipment: not locked\
+###centrifuges: not locked\
+###freezers: locked\
+###hotPlates: locked\
+###tickColonies: locked\
+###incubators: locked\
+###pipettes: not locked
 
 ## Facilities
-facilities: not_locked\
-storage: locked\
-safetyShowers: locked\
-workbenches: not_locked
+###facilities: not locked\
+###storage: locked\
+###safetyShowers: locked\
+###workbenches: not locked
