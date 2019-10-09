@@ -51,12 +51,18 @@ staff which can reduce the salaries of other staff
 ### salaries: not locked
 funds which are depleted every end of turn to pay for the salaries of all the employees
 ### kickbacks: not locked
+risky sources of funding at the possible costs of looking essential equipments or facilities due to neglect
 ### embezzlement: not locked
+direct access to cash with the possibility of fines and penalties if caught. Hiring more accountants will make this more difficult to get away with.
 
 ## Decontamination
+measure to reduce and prevent an outbreak.
 ### decontamination: not locked
+funds directed towards decontamination will reduce the possiblities for the initial origin of an outbreak from within the lab
 ### suits: locked
+suits provide an extra measure to maintain the health of the staff granted the virus is not resistant to this form of decontamination
 ### showers: locked
+reduces viruses progression during an outbreak granted the virus is not resistant to this form of decontamination
 ### protocols: not locked
 
 ## Electricity
