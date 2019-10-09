@@ -15,7 +15,7 @@ nor do they reduce any biohazardous outbreaks from happening. Locked concerns ar
 tree and the biohazard level of the facility that has been achieved.
 
 ## Air System
-airSystem: not_locked
+airSystem: not_locked\
 gaskets: not_locked\
 airPressure: not_locked\
 filters: locked\
