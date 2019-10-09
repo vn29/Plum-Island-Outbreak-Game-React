@@ -222,7 +222,7 @@ class Lab extends React.Component {
      }
 
      hire_sr_scientist() {
-          let cond = (this.state.budget.budget >= 20000 && this.state.lock.locked_obj.employees.srScientists == 'Not_Locked')
+          let cond = (this.state.budget.budget >= 20000 && this.state.lock.locked_obj.employees.srScientists == 'not_locked')
           if (cond) {
                this.setState(prevState => {
                     let budget_ob = Object.assign({},this.state.budget)
@@ -238,12 +238,13 @@ class Lab extends React.Component {
      }
 
      hire_facilities_staff() {
-          let cond = (this.state.budget.budget >= 5000 && this.state.lock.locked_obj.employees.srScientists == 'Not_Locked')
+          let cond = (this.state.budget.budget >= 5000 && this.state.lock.locked_obj.employees.facilitiesEngineering == 'not_locked')
+          console.log(cond)
           if (cond) {
                this.setState(prevState => {
                     let budget_ob = Object.assign({},this.state.budget)
                     let st_ob = Object.assign({},this.state.employees)
-                    st_ob.srScientists = prevState.employees.srScientists + 1
+                    st_ob.facilitiesEngineering = prevState.employees.facilitiesEngineering + 1
                     budget_ob.budget = prevState.budget.budget - 5000
                     return ({
                          budget : budget_ob,
@@ -251,6 +252,10 @@ class Lab extends React.Component {
                     })
                })
           }
+     }
+
+     unlock_concern (concern,item) {
+          this.state.lock.locked_obj[concern][item] = 'not_locked'
      }
 
      render() {
@@ -268,6 +273,9 @@ class Lab extends React.Component {
                lock
           } = this.state
           let lm = new Lab_methods()
+
+          
+
           return (
                
                <div className = "main_display">
@@ -292,6 +300,19 @@ class Lab extends React.Component {
                               size    = "sm"
                               onClick = {() => this.hire_sr_scientist(this.state)}
                          >Hire srScientist</Button>
+                         <Button
+                              variant = "secondary"
+                              size    = "sm"
+                              onClick = {() => this.unlock_concern('employees','srScientists')}
+                         >unlock scientist</Button>
+
+                         <Button
+                              variant = "secondary"
+                              size    = "sm"
+                              onClick = {() => this.hire_facilities_staff()}
+                         >Hire FacilitiesEngineer</Button>
+
+
                     </div>
                     <div className = "component_display">
                          <div className = "inter_display">

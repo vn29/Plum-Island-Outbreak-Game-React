@@ -25,8 +25,8 @@ class Locked {
                grants: 'not_locked',
                accounting: 'not_locked',
                salaries: 'not_locked',
-               kickbacks: 'not_locked',
-               embezzlement: 'not_locked',
+               kickbacks: 'locked',
+               embezzlement: 'locked',
           }
 
           var decontamination = {

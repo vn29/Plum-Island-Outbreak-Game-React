@@ -85,6 +85,13 @@ class Lab_methods {
           return dep
      }
      employees_fx(dep,thisState,lock_state) {
+
+          dep['employees']     = dep['scientists']
+                              + dep['jrScientists']
+                              + dep['srScientists']
+                              + dep['facilitiesEngineering']
+                              + dep['administration']
+
           return dep
      }
      equipment_fx(dep,thisState,lock_state) {
