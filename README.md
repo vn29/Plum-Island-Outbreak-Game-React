@@ -51,7 +51,7 @@ staff which can reduce the salaries of other staff
 ### salaries: not locked
 funds which are depleted every end of turn to pay for the salaries of all the employees
 ### kickbacks: not locked
-risky sources of funding at the possible costs of looking essential equipments or facilities due to neglect
+risky sources of funding at the possible costs of loosing essential equipments or facilities due to neglect
 ### embezzlement: not locked
 direct access to cash with the possibility of fines and penalties if caught. Hiring more accountants will make this more difficult to get away with.
 
