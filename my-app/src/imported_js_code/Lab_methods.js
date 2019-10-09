@@ -27,12 +27,11 @@ class Lab_methods {
                                         -0.1*thisState.airSystem['airPressure']
                                         -0.1*thisState.airSystem['filters']       
                                         -0.1*thisState.airSystem['generatorFeeds']
-                                        -0.1*thisState.decontamination['decontamination']
                                         -0.1*thisState.decontamination['suits']          
                                         -0.1*thisState.decontamination['showers']        
                                         -0.1*thisState.decontamination['protocols']
-                                        -0.1*thisState.electricity['freezers']
-                                        -0.1*thisState.electricity['boilers']    
+                                        -0.1*thisState.electricity['freezers']*thisState.electricity['electricity']/100
+                                        -0.1*thisState.electricity['boilers']*thisState.electricity['electricity']/100
                                         -0.1*thisState.facilities['storage']   
                                         -0.1*thisState.facilities['safetyShowers']  )
      
@@ -48,7 +47,7 @@ class Lab_methods {
                               // - dep['embezzlement']
 
           dep['grants']       = dep['grants'] 
-                              +thisState.biologicals['biologicals'] * 10000
+                              +thisState.biologicals['biologicals'].length * 10000
                               + thisState.employees['employees']  * 10000
                                + thisState.facilities['facilities']  * 10000
 
@@ -143,19 +142,6 @@ class Lab_methods {
           return obs        
      }
 
-
-     hire_scientist(LabThis, thisState) {
-          console.log('i was clicked')
-          if (thisState.budget.budget >= 20000) {
-               LabThis.setState(prevState => {
-                    let budget_ob = Object.assign({},LabThis.budget)
-                    budget_ob.budget += prevState.budget.budget
-                    return ({
-                         budget_ob 
-                    })
-               })
-          }
-     }
 
 
 
