@@ -64,34 +64,62 @@ suits provide an extra measure to maintain the health of the staff granted the v
 ### showers: locked
 reduces viruses progression during an outbreak granted the virus is not resistant to this form of decontamination
 ### protocols: not locked
+reduces outbreak progression granted there is not a breach of protocol event.
 
 ## Electricity
+required resource to maintain essential research equipment and biohazard safety.
 ### electricity: not locked
+the main resource with the number representing the likelyhood of a power outage. A power outage during an outbreak situation can be dangerous and lapse many safety measures in place.
 ### freezers: not locked
+increase research efficiency and provide a safegaurd against uncontrolled growth of a biological culture.
 ### boilers: locked
+power hungry and very important to the appropriate decontamination of waste water from the facility. required for more advanced forms of research.
 ### backupGenerators: locked
+provide reduced risks of a loss of power occuring
 ### aboveGroundLines: locked
+provide reduced risks of a loss of power occuring
 ### belowGroundLines: not locked
+provide reduced risks of a loss of power occuring. not vulnerable to storms.
 
 ## Employees
+the staff of Plum Island
 ### employees : not locked
+total number of employees
 ### scientists : not locked
+number of scientists of staff
 ### jrScientists : not locked
+number of jr scientists of staff
 ### srScientists : locked
+number of sr scientists of staff. locked at beginning of game and must be hired. provide significant research advancement.
 ### facilitiesEngineering : not locked
+number of facilities engineering staff that provide decontamination and preventative measures.
 ### administration : not locked
+increases the efficiency of all other employees
 
 ## Equipment
+esential research equipment used by scientists to increase their research productivity. is dependent on power
 ### equipment: not locked
+provides a status indicator of the efficiency of current equipment
 ### centrifuges: not locked
+increases research efficiency. dependent on power.
 ### freezers: locked
+increases research efficiency. dependent on power.
 ### hotPlates: locked
+increases research efficiency. dependent on power. requires jr scientists on staff
 ### tickColonies: locked
+increases research efficiency. dependent on power. requires sr scientists on staff
 ### incubators: locked
+increases research efficiency. dependent on power. requires scientists on staff
 ### pipettes: not locked
+increases resarch efficiency
 
 ## Facilities
+provide neccesary workspaces and area for decontamination
 ### facilities: not locked
+provides a status indicator of the efficiency of current facilities
 ### storage: locked
+provides research efficiency and improved decontamination to prevent progression of an outbreak
 ### safetyShowers: locked
+improves safety against a biological outbreak. required for some biohazard levels
 ### workbenches: not locked
+provides improved research efficiency
