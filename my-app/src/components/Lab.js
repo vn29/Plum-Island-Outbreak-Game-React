@@ -40,7 +40,7 @@ class Lab extends React.Component {
                biologicals: ['foot-and-mouth disease',],
                researchTree: 1,
                biologicalProperties: 1,
-               outbreakProgression: 1
+               outbreakProgression: 10
           }
 
           var budget = {
@@ -60,7 +60,7 @@ class Lab extends React.Component {
           }
 
           var electricity = {
-               electricity: 1,
+               electricity: 100,
                freezers: 1,
                boilers: 1,
                backupGenerators: 1,

@@ -21,9 +21,20 @@ class Lab_methods {
      }*/
      biologicals_fx(dep,thisState,lock_state) {
           dep['biologicals']          = dep['biologicals']
-          dep['researchTree']         = dep['researchTree']
-          dep['biologicalProperties'] = dep['biologicalProperties']
-          dep['outbreakProgression']  = dep['outbreakProgression']
+          //dep['researchTree']         = dep['researchTree']
+          //dep['biologicalProperties'] = dep['biologicalProperties']
+          dep['outbreakProgression']  = Math.max(0,dep['outbreakProgression']
+                                        -0.1*thisState.airSystem['airPressure']
+                                        -0.1*thisState.airSystem['filters']       
+                                        -0.1*thisState.airSystem['generatorFeeds']
+                                        -0.1*thisState.decontamination['decontamination']
+                                        -0.1*thisState.decontamination['suits']          
+                                        -0.1*thisState.decontamination['showers']        
+                                        -0.1*thisState.decontamination['protocols']
+                                        -0.1*thisState.electricity['freezers']
+                                        -0.1*thisState.electricity['boilers']    
+                                        -0.1*thisState.facilities['storage']   
+                                        -0.1*thisState.facilities['safetyShowers']  )
      
 
           return dep
@@ -50,9 +61,9 @@ class Lab_methods {
                                + thisState.employees['facilitiesEngineering']  *5000
                                + thisState.employees['administration']* 15000
 
-          // dep['kickbacks']    = dep['kickbacks']
+           dep['kickbacks']    = dep['kickbacks']
 
-          // dep['embezzlement'] = dep['embezzlement']
+           dep['embezzlement'] = dep['embezzlement']
 
           return dep
      }
@@ -66,25 +77,25 @@ class Lab_methods {
      }
      electricity_fx(dep,thisState,lock_state) {
 
-          // dep['electricity']      = dep['electricity'] + dep['freezers'] + dep['boilers'] + dep['backupGenerators'] + dep['aboveGroundLines'] + dep['belowGroundLines']
-          // dep['freezers']         = dep['freezers']
-          // dep['boilers']          = dep['boilers']
-          // dep['backupGenerators'] = dep['backupGenerators']
-          // dep['aboveGroundLines'] = dep['aboveGroundLines']
-          // dep['belowGroundLines'] = dep['belowGroundLines']
+          dep['electricity']      = Math.min(90 + 0.1*dep['freezers'] + 0.1*dep['boilers'] + 0.1*dep['backupGenerators'] + 0.1*dep['aboveGroundLines'] + 0.1*dep['belowGroundLines'],100)
+           dep['freezers']         = dep['freezers']
+           dep['boilers']          = dep['boilers']
+           dep['backupGenerators'] = dep['backupGenerators']
+           dep['aboveGroundLines'] = dep['aboveGroundLines']
+           dep['belowGroundLines'] = dep['belowGroundLines']
           return dep
      }
      employees_fx(dep,thisState,lock_state) {
           return dep
      }
      equipment_fx(dep,thisState,lock_state) {
-          dep['equipment']    = dep['equipment'] 
-                              // + dep['centrifuges'] 
-                              // + dep['freezers'] 
-                              // + dep['hotPlates'] 
-                              // + dep['tickColonies'] 
-                              // + dep['incubators'] 
-                              // + dep['pipettes']
+          dep['equipment']    = Math.min(100,90
+                               + 0.1*dep['centrifuges'] 
+                               + 0.1*dep['freezers'] 
+                               + 0.1*dep['hotPlates'] 
+                               + 0.1*dep['tickColonies'] 
+                               + 0.1*dep['incubators'] 
+                               + 0.1*dep['pipettes'])
 
           dep['centrifuges']  = dep['centrifuges'] 
                               // + thisState.electricity['electricity']
