@@ -7,7 +7,12 @@ class Biologicals extends React.Component {
           let comp_props = this.props.comp_props
           let comp_2 = {}
           Object.entries(comp_props).forEach((i) =>{
-               comp_2[i[0]] = i[1].toFixed(2)
+               if (typeof(i) == (typeof(1.0) || typeof(1))) {
+                    comp_2[i[0]] = i[1].toFixed(2)
+               } else {
+                    comp_2[i[0]] = i[1]
+               }
+               
           }) //[k,v]
           return(
                <div className = 'main_component'>
