@@ -15,11 +15,17 @@ nor do they reduce any biohazardous outbreaks from happening. Locked concerns ar
 tree and the biohazard level of the facility that has been achieved.
 
 ## Air System
+provides an innovative negative air pressure through out the facility that ensures airborne vectors are contained within the facility.
 ### airSystem: not locked
+general air systems such as duct work and ventalations.
 ### gaskets: not locked
+sealants around doors and vents that prevent penetrations through the enclosure of the facility.
 ### airPressure: not locked
+air pressure control systems that maintain negaive air pressure of the enclosed facility to the outside. Especially in hot zones.
 ### filters: locked
+air filtration systems that provide an additional measure against airborne vectors in the case of an incident.
 ### generatorFeeds: locked
+provides additional backup power in the case of a loss of main power to the air pressure system. loss of the negative air pressure system would be catastrophic.
 
 ## Biologicals
 ### biologicals: not locked
