@@ -37,7 +37,7 @@ class Lab extends React.Component {
           var biohazard = 1;
 
           var biologicals = {
-               biologicals: 1,
+               biologicals: ['foot-and-mouth disease',],
                researchTree: 1,
                biologicalProperties: 1,
                outbreakProgression: 1
