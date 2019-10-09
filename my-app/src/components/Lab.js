@@ -192,13 +192,59 @@ class Lab extends React.Component {
      }
 
      hire_scientist() {
-          console.log('i was clicked')
-          if (this.state.budget.budget >= 20000) {
+          if (this.state.budget.budget >= 10000) {
                this.setState(prevState => {
                     let budget_ob = Object.assign({},this.state.budget)
                     let st_ob = Object.assign({},this.state.employees)
                     st_ob.scientists = prevState.employees.scientists + 1
+                    budget_ob.budget = prevState.budget.budget - 10000
+                    return ({
+                         budget : budget_ob,
+                         employees : st_ob
+                    })
+               })
+          }
+     }
+
+     hire_jr_scientist() {
+          if (this.state.budget.budget >= 8000) {
+               this.setState(prevState => {
+                    let budget_ob = Object.assign({},this.state.budget)
+                    let st_ob = Object.assign({},this.state.employees)
+                    st_ob.jrScientists = prevState.employees.jrScientists + 1
+                    budget_ob.budget = prevState.budget.budget - 8000
+                    return ({
+                         budget : budget_ob,
+                         employees : st_ob
+                    })
+               })
+          }
+     }
+
+     hire_sr_scientist() {
+          let cond = (this.state.budget.budget >= 20000 && this.state.lock.locked_obj.employees.srScientists == 'Not_Locked')
+          if (cond) {
+               this.setState(prevState => {
+                    let budget_ob = Object.assign({},this.state.budget)
+                    let st_ob = Object.assign({},this.state.employees)
+                    st_ob.srScientists = prevState.employees.srScientists + 1
                     budget_ob.budget = prevState.budget.budget - 20000
+                    return ({
+                         budget : budget_ob,
+                         employees : st_ob
+                    })
+               })
+          }
+     }
+
+     hire_facilities_staff() {
+          let cond = (this.state.budget.budget >= 5000 && this.state.lock.locked_obj.employees.srScientists == 'Not_Locked')
+          if (cond) {
+               this.setState(prevState => {
+                    let budget_ob = Object.assign({},this.state.budget)
+                    let st_ob = Object.assign({},this.state.employees)
+                    st_ob.srScientists = prevState.employees.srScientists + 1
+                    budget_ob.budget = prevState.budget.budget - 5000
                     return ({
                          budget : budget_ob,
                          employees : st_ob
@@ -234,8 +280,18 @@ class Lab extends React.Component {
                          <Button
                               variant = "secondary"
                               size    = "sm"
+                              onClick = {() => this.hire_jr_scientist(this.state)}
+                         >Hire jrScientist</Button>
+                         <Button
+                              variant = "secondary"
+                              size    = "sm"
                               onClick = {() => this.hire_scientist(this.state)}
-                         >Hire Scientist</Button>
+                         >Hire Scientist (mid level)</Button>
+                         <Button
+                              variant = "secondary"
+                              size    = "sm"
+                              onClick = {() => this.hire_sr_scientist(this.state)}
+                         >Hire srScientist</Button>
                     </div>
                     <div className = "component_display">
                          <div className = "inter_display">

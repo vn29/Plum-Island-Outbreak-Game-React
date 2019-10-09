@@ -143,85 +143,9 @@ class Lab_methods {
      }
 
 
-
-
-
-
-
-
-
-
 }
 
 
 
 
 export default Lab_methods
-
-
-/*
-var airSystem = {
-     airSystem: 1,
-     gaskets: 1,
-     airPressure: 1,
-     filters: 1,
-     generatorFeeds: 1,
-}
-
-var biohazard = 1;
-
-var biologicals = {
-     biologicals: 1,
-     researchTree: 1,
-     biologicalProperties: 1
-}
-
-var budget = {
-     budget: 1,
-     grants: 1,
-     accounting: 1,
-     salaries: 1,
-     kickbacks: 1,
-     embezzlement: 1,
-}
-
-var decontamination = {
-     decontamination: 1,
-     suits: 1,
-     showers: 1,
-     protocols: 1,
-}
-
-var electricity = {
-     electricity: 1,
-     freezers: 1,
-     boilers: 1,
-     backupGenerators: 1,
-     aboveGroundLines: 1,
-     belowGroundLines: 1,
-}
-
-var employees = {
-     scientists : 1,
-     jrScientists : 1,
-     srScientists : 1,
-     facilitiesEngineering : 1,
-     administration : 1
-}
-
-var equipment = {
-     equipment: 1,
-     centrifuges: 1,
-     freezers: 1,
-     hotPlates: 1,
-     tickColonies: 1,
-     incubators: 1,
-     pipettes: 1,
-}
-
-var facilities = {
-     facilities: 1,
-     storage: 1,
-     safetyShowers: 1,
-     workbenches: 1,
-} */
