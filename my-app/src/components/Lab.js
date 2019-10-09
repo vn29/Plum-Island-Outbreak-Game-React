@@ -110,6 +110,7 @@ class Lab extends React.Component {
           }
           //set locked values to zero in the constructor
           this.set_locked_to_zero()
+          this.purchase_gaskets = this.purchase_gaskets.bind(this)
 
 
      }
@@ -254,6 +255,23 @@ class Lab extends React.Component {
           }
      }
 
+     purchase_gaskets() {
+          let cond = (this.state.budget.budget >= 50000 && this.state.lock.locked_obj.airSystem.gaskets == 'not_locked')
+          console.log(cond)
+          if (cond) {
+               this.setState(prevState => {
+                    let budget_ob = Object.assign({},this.state.budget)
+                    let st_ob = Object.assign({},this.state.airSystem)
+                    st_ob.gaskets = prevState.airSystem.gaskets + 1
+                    budget_ob.budget = prevState.budget.budget - 50000
+                    return ({
+                         budget : budget_ob,
+                         airSystem : st_ob
+                    })
+               })
+          }
+     }
+
      unlock_concern (concern,item) {
           this.state.lock.locked_obj[concern][item] = 'not_locked'
      }
@@ -288,17 +306,17 @@ class Lab extends React.Component {
                          <Button
                               variant = "secondary"
                               size    = "sm"
-                              onClick = {() => this.hire_jr_scientist(this.state)}
+                              onClick = {() => this.hire_jr_scientist()}
                          >Hire jrScientist</Button>
                          <Button
                               variant = "secondary"
                               size    = "sm"
-                              onClick = {() => this.hire_scientist(this.state)}
+                              onClick = {() => this.hire_scientist()}
                          >Hire Scientist (mid level)</Button>
                          <Button
                               variant = "secondary"
                               size    = "sm"
-                              onClick = {() => this.hire_sr_scientist(this.state)}
+                              onClick = {() => this.hire_sr_scientist()}
                          >Hire srScientist</Button>
                          <Button
                               variant = "secondary"
@@ -311,6 +329,12 @@ class Lab extends React.Component {
                               size    = "sm"
                               onClick = {() => this.hire_facilities_staff()}
                          >Hire FacilitiesEngineer</Button>
+
+                         <Button
+                              variant = "secondary"
+                              size    = "sm"
+                              onClick = {() => this.purchase_gaskets()}
+                         >Purchase gaskets</Button>
 
 
                     </div>

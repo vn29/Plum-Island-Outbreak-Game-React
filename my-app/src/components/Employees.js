@@ -13,7 +13,7 @@ class Employees extends React.Component {
                <div className = 'main_component'>
                     {this.constructor.name} : {comp_2.employees}
                     <Scientists             className = {this.props.lock_props.scientists} comp_props = {comp_2.scientists} />
-                    <JrScientists          className = {this.props.lock_props.jrScientists} comp_props = {comp_2.jrScientists} />
+                    <JrScientists          className = {this.props.lock_props.jrScientists} comp_props = {comp_2.jrScientists}/>
                     <SrScientists          className = {this.props.lock_props.srScientists} comp_props = {comp_2.srScientists} />
                     <Facilitiesengineering className = {this.props.lock_props.facilitiesEngineering} comp_props = {comp_2.facilitiesEngineering} />
                     <Administration         className = {this.props.lock_props.administration} comp_props = {comp_2.administration} />
