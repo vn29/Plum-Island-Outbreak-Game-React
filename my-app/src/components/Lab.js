@@ -110,7 +110,6 @@ class Lab extends React.Component {
           }
           //set locked values to zero in the constructor
           this.set_locked_to_zero()
-          this.purchase_gaskets = this.purchase_gaskets.bind(this)
 
 
      }
@@ -192,85 +191,27 @@ class Lab extends React.Component {
 
      }
 
-     hire_scientist() {
-          if (this.state.budget.budget >= 10000) {
-               this.setState(prevState => {
-                    let budget_ob = Object.assign({},this.state.budget)
-                    let st_ob = Object.assign({},this.state.employees)
-                    st_ob.scientists = prevState.employees.scientists + 1
-                    budget_ob.budget = prevState.budget.budget - 10000
-                    return ({
-                         budget : budget_ob,
-                         employees : st_ob
-                    })
-               })
-          }
-     }
 
-     hire_jr_scientist() {
-          if (this.state.budget.budget >= 8000) {
-               this.setState(prevState => {
-                    let budget_ob = Object.assign({},this.state.budget)
-                    let st_ob = Object.assign({},this.state.employees)
-                    st_ob.jrScientists = prevState.employees.jrScientists + 1
-                    budget_ob.budget = prevState.budget.budget - 8000
-                    return ({
-                         budget : budget_ob,
-                         employees : st_ob
-                    })
-               })
-          }
-     }
 
-     hire_sr_scientist() {
-          let cond = (this.state.budget.budget >= 20000 && this.state.lock.locked_obj.employees.srScientists == 'not_locked')
+
+     add_item(thisState,concern,item,cost) {
+          
+          let cond = (thisState.budget.budget >= cost && thisState.lock.locked_obj[concern][item] == 'not_locked')
+          console.log(thisState.budget.budget,thisState.lock.locked_obj[concern][item])
           if (cond) {
                this.setState(prevState => {
-                    let budget_ob = Object.assign({},this.state.budget)
-                    let st_ob = Object.assign({},this.state.employees)
-                    st_ob.srScientists = prevState.employees.srScientists + 1
-                    budget_ob.budget = prevState.budget.budget - 20000
-                    return ({
-                         budget : budget_ob,
-                         employees : st_ob
-                    })
+                    let budget_ob = Object.assign({},thisState.budget)
+                    let st_ob = Object.assign({},thisState[concern])
+                    st_ob[item] = prevState[concern][item] + 1
+                    budget_ob.budget = prevState.budget.budget - cost
+                    let x = {}
+                    x.budget = budget_ob
+                    x[concern] = st_ob
+                    return (x)
                })
           }
      }
 
-     hire_facilities_staff() {
-          let cond = (this.state.budget.budget >= 5000 && this.state.lock.locked_obj.employees.facilitiesEngineering == 'not_locked')
-          console.log(cond)
-          if (cond) {
-               this.setState(prevState => {
-                    let budget_ob = Object.assign({},this.state.budget)
-                    let st_ob = Object.assign({},this.state.employees)
-                    st_ob.facilitiesEngineering = prevState.employees.facilitiesEngineering + 1
-                    budget_ob.budget = prevState.budget.budget - 5000
-                    return ({
-                         budget : budget_ob,
-                         employees : st_ob
-                    })
-               })
-          }
-     }
-
-     purchase_gaskets() {
-          let cond = (this.state.budget.budget >= 50000 && this.state.lock.locked_obj.airSystem.gaskets == 'not_locked')
-          console.log(cond)
-          if (cond) {
-               this.setState(prevState => {
-                    let budget_ob = Object.assign({},this.state.budget)
-                    let st_ob = Object.assign({},this.state.airSystem)
-                    st_ob.gaskets = prevState.airSystem.gaskets + 1
-                    budget_ob.budget = prevState.budget.budget - 50000
-                    return ({
-                         budget : budget_ob,
-                         airSystem : st_ob
-                    })
-               })
-          }
-     }
 
      unlock_concern (concern,item) {
           this.state.lock.locked_obj[concern][item] = 'not_locked'
@@ -298,43 +239,27 @@ class Lab extends React.Component {
                
                <div className = "main_display">
                     <div className = "component_display">
-                         <Button
-                              variant = "secondary"
-                              size    = "sm"
-                              onClick = {() => this.end_turn()}
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.end_turn()}
                          >End Turn</Button>
-                         <Button
-                              variant = "secondary"
-                              size    = "sm"
-                              onClick = {() => this.hire_jr_scientist()}
+                         
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'employees','jrScientists',8000)}
                          >Hire jrScientist</Button>
-                         <Button
-                              variant = "secondary"
-                              size    = "sm"
-                              onClick = {() => this.hire_scientist()}
+                         
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'employees','scientists',10000)}
                          >Hire Scientist (mid level)</Button>
-                         <Button
-                              variant = "secondary"
-                              size    = "sm"
-                              onClick = {() => this.hire_sr_scientist()}
+                         
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'employees','srScientists',20000)}
                          >Hire srScientist</Button>
-                         <Button
-                              variant = "secondary"
-                              size    = "sm"
-                              onClick = {() => this.unlock_concern('employees','srScientists')}
+                         
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.unlock_concern('employees','srScientists')}
                          >unlock scientist</Button>
-
-                         <Button
-                              variant = "secondary"
-                              size    = "sm"
-                              onClick = {() => this.hire_facilities_staff()}
+                         
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'employees','facilitiesEngineer',5000)}
                          >Hire FacilitiesEngineer</Button>
-
-                         <Button
-                              variant = "secondary"
-                              size    = "sm"
-                              onClick = {() => this.purchase_gaskets()}
+                         
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'airSystem','gaskets',50000)}
                          >Purchase gaskets</Button>
+                         
 
 
                     </div>
