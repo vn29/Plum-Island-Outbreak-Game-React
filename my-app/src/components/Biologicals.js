@@ -3,6 +3,13 @@ import React from 'react';
 
 
 class Biologicals extends React.Component {
+
+
+     list_bios(bios) {
+          const x = bios.map((i) => <div>{i}</div>)
+          return(x)
+     }
+
      render() {
           let comp_props = this.props.comp_props
           let comp_2 = {}
@@ -16,7 +23,8 @@ class Biologicals extends React.Component {
           }) //[k,v]
           return(
                <div className = 'main_component'>
-                    {this.constructor.name} : {comp_2.biologicals}
+                    <div>{this.constructor.name}:</div>
+                    {this.list_bios(comp_props.biologicals)}
                     <Researchtree         className = {this.props.lock_props.researchTree} comp_props         = {comp_2.researchTree} />
                     <Biologicalproperties className = {this.props.lock_props.biologicalProperties} comp_props = {comp_2.biologicalProperties} />
                     <Outbreakprogression  className = {this.props.lock_props.outbreakProgression} comp_props  = {comp_2.outbreakProgression} />
