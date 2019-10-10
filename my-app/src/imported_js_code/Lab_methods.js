@@ -46,8 +46,7 @@ class Lab_methods {
                               // - dep['kickbacks'] 
                               // - dep['embezzlement']
 
-          dep['grants']       = dep['grants'] 
-                              +thisState.biologicals['biologicals'].length * 10000
+          dep['grants']       = thisState.biologicals['biologicals'].length * 10000
                               + thisState.employees['employees']  * 10000
                                + thisState.facilities['facilities']  * 10000
 
