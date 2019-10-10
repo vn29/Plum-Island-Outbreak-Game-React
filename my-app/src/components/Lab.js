@@ -213,6 +213,16 @@ class Lab extends React.Component {
      }
 
 
+     item_display(thisState,concern,item_cost) {
+
+          //some array will feed x. its oging to have the item and costs
+          let x = Object.entries(item_cost).map((kv) => 
+               <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(thisState,concern,kv[0],kv[1])}
+               >add {kv[0]}</Button>
+          )
+          return(x)
+     }
+
      unlock_concern (concern,item) {
           this.state.lock.locked_obj[concern][item] = 'not_locked'
      }
@@ -241,26 +251,51 @@ class Lab extends React.Component {
                     <div className = "component_display">
                          <Button variant = "secondary" size    = "sm" onClick = {() => this.end_turn()}
                          >End Turn</Button>
-                         
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'employees','jrScientists',8000)}
-                         >Hire jrScientist</Button>
-                         
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'employees','scientists',10000)}
-                         >Hire Scientist (mid level)</Button>
-                         
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'employees','srScientists',20000)}
-                         >Hire srScientist</Button>
-                         
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.unlock_concern('employees','srScientists')}
-                         >unlock scientist</Button>
-                         
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'employees','facilitiesEngineer',5000)}
-                         >Hire FacilitiesEngineer</Button>
-                         
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(this.state,'airSystem','gaskets',50000)}
-                         >Purchase gaskets</Button>
-                         
 
+                         {this.item_display(this.state,'employees',{
+                                                                      'jrScientists': 8000,
+                                                                      'scientists': 10000,
+                                                                      'srScientists': 20000,
+                                                                      'facilitiesEngineer' : 5000,
+                                                                 })}
+                         {this.item_display(this.state,'airSystem',{
+                                                                      'gaskets': 10000,
+                                                                      'airPressure': 10000,
+                                                                      'filters': 5000,
+                                                                      'generatorFeeds': 100000,
+                                                                 })}
+                                                                 
+                         {this.item_display(this.state,'decontamination',{
+                                                                      'suits': 5000,
+                                                                      'showers': 10000,
+                                                                      'protocols': 10000,
+                                                                 })}
+                                                                 
+                         {this.item_display(this.state,'electricity',{
+                                                                      'freezers': 200000,
+                                                                      'boilers': 300000,
+                                                                      'backupGenerators': 100000,
+                                                                      'aboveGroundLines': 100000,
+                                                                      'belowGroundLines': 100000,
+                                                                 })}
+                                                                 
+                         {this.item_display(this.state,'equipment',{
+                                                                      'centrifuges': 20000,
+                                                                      'freezers': 30000,
+                                                                      'hotPlates': 5000,
+                                                                      'tickColonies': 20000,
+                                                                      'incubators': 10000,
+                                                                      'pipettes' : 500
+                                                                 })}
+                                                                 
+                                                                 
+                         {this.item_display(this.state,'facilities',{
+                                                                      'storage': 100000,
+                                                                      'safetyShowers': 50000,
+                                                                      'workbenches': 20000,
+                                                                 })}
+
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.unlock_concern('employees','srScientists')}>unlock scientist</Button>
 
                     </div>
                     <div className = "component_display">
