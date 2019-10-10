@@ -22,11 +22,11 @@ class Lab extends React.Component {
 
      constructor(props) {
           super(props)
-          var lock = new Locked()
+          let lock = new Locked()
 
 
 
-          var airSystem = {
+          let airSystem = {
                airSystem: 1,
                gaskets: 1,
                airPressure: 1,
@@ -34,16 +34,16 @@ class Lab extends React.Component {
                generatorFeeds: 1,
           }
 
-          var biohazard = 1;
+          let biohazard = 1;
 
-          var biologicals = {
+          let biologicals = {
                biologicals: ['foot-and-mouth disease','mad-cow'],
                researchTree: 1,
                biologicalProperties: 1,
                outbreakProgression: 10
           }
 
-          var budget = {
+          let budget = {
                budget: 10000,
                grants: 10000,
                accounting: 1,
@@ -52,14 +52,14 @@ class Lab extends React.Component {
                embezzlement: 1,
           }
 
-          var decontamination = {
+          let decontamination = {
                decontamination: 1,
                suits: 1,
                showers: 1,
                protocols: 1,
           }
 
-          var electricity = {
+          let electricity = {
                electricity: 100,
                freezers: 1,
                boilers: 1,
@@ -68,7 +68,7 @@ class Lab extends React.Component {
                belowGroundLines: 1,
           }
 
-          var employees = {
+          let employees = {
                employees : 1,
                scientists : 1,
                jrScientists : 1,
@@ -77,7 +77,7 @@ class Lab extends React.Component {
                administration : 1
           }
 
-          var equipment = {
+          let equipment = {
                equipment: 1,
                centrifuges: 1,
                freezers: 1,
@@ -87,12 +87,14 @@ class Lab extends React.Component {
                pipettes: 1,
           }
 
-          var facilities = {
+          let facilities = {
                facilities: 1,
                storage: 1,
                safetyShowers: 1,
                workbenches: 1,
           }
+
+          let misc = {}
 
           
 
@@ -124,7 +126,7 @@ class Lab extends React.Component {
 
      set_locked_to_zero () {
           for (let state_obs of Object.keys(this.state)) { // for each category of concern
-               if (state_obs !== 'biohazard' && state_obs !== 'lock') { //except for the biohazard and lock categories
+               if (state_obs !== 'biohazard' && state_obs !== 'lock' && state_obs !== 'misc') { //except for the biohazard and lock categories
                     let aslockobject = this.state.lock.locked_obj[state_obs] //grab the locked state. either 'locked' or 'not_locked'
                     Object.entries(state_obs).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
                          let k = kv[0] //this is just the key name so we can access the locked objects sub category of concern
@@ -248,7 +250,7 @@ class Lab extends React.Component {
 
                Object.keys(this.state).forEach(
                     (k) => {
-                         if (k !== 'biohazard' && k !== 'lock') {
+                         if (k !== 'biohazard' && k !== 'lock' && k !== 'misc') {
                               dax.push(lm.resource_changer(prevState[k],this.state,fx_list[k],lock[k]))
                          }
                     }
@@ -277,6 +279,18 @@ class Lab extends React.Component {
                     return (x)
                })
           }
+     }
+
+     upgrade_biohazard_level (thisState,cost) {
+          if ( thisState.budget.budget >= cost && thisState.biohazard < 4)
+               this.setState(prevState => {
+                    let preb = Object.assign({},prevState.budget)
+                    preb.budget = prevState.budget.budget - cost
+ 
+
+                    return({biohazard : Math.min(4,prevState.biohazard + 1), budget: preb})
+
+               })
      }
 
 
@@ -318,6 +332,8 @@ class Lab extends React.Component {
                     <div className = "component_display">
                          <Button variant = "secondary" size    = "sm" onClick = {() => this.end_turn()}
                          >End Turn</Button>
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.upgrade_biohazard_level(this.state,1000000)}
+                         >upgrade biohazard level</Button>
 
                          {this.item_display(this.state,'employees',{
                                                                       'jrScientists': 8000,
