@@ -137,10 +137,76 @@ class Lab extends React.Component {
           }
      }
 
+     hurricane_actn(lab) {
+          lab.setState(prevState => {
+               
+               let st = Object.assign({},lab.state)
+               st.electricity.electricity = 90
+               return (st)
+          })
+          
+     }
+     staff_contraction_actn(lab) {
+          if (lab.state.budget.budget >= 10000){
+               lab.state.budget.budget -= 10000
+          }
+     }
+     budget_cuts_atcn(lab) {
+          if (lab.state.budget.budget >= 10000){
+               lab.state.budget.budget -= 10000
+          }
+     }
+     scientists_quit_actn(lab) {
+          let emp = lab.state.employees
+          if(emp.scientists >= 1 ) {
+               emp.scientists -= 1
+          }
+          if(emp.jrScientists >= 1 ) {
+               emp.jrScientists -= 1
+          }
+          if(emp.srScientists >= 1 ) {
+               emp.srScientists -= 1
+          }
+     }
+     equipment_failure_actn(lab) {
+          lab.state.equipment.equipment = 90 
+
+     }
+     decontamination_failure_actn(lab) {
+          let dcn = lab.state.decontamination
+          if (dcn.protocols >=1) {
+               dcn.protocols -= 1
+          }
+          if (dcn.showers >=1) {
+               dcn.showers -= 1
+          }
+          if (dcn.suits >=1) {
+               dcn.suits -= 1
+          }
+
+     }
+     botched_lab_results_actn(lab) {
+          if (lab.state.budget.budget >= 10000){
+               lab.state.budget.budget -= 10000
+          }
+     }
+     
+     scientific_breakthrough_actn(lab) {
+          lab.state.budget.budget += 100000
+
+     }
+
      select_event() {
           let selection_number = Math.floor(Math.random() * 7)
-          let pos_events       = ['hurricane','staff_contraction','budget_cuts','scientists_quit','equipment_failure','decontamination_failure','botched_lab_results','scientific_breakthrough']
-          return ( pos_events[selection_number])
+          let pos_events       = {'hurricane' : this.hurricane_actn,
+                                   'staff_contraction' : this.staff_contraction_actn,
+                                   'budget_cuts' : this.budget_cuts_atcn,
+                                   'scientists_quit' : this.scientists_quit_actn,
+                                   'equipment_failure' : this.equipment_failure_actn,
+                                   'decontamination_failure' : this.decontamination_failure_actn,
+                                   'botched_lab_results' : this.botched_lab_results_actn,
+                                   'scientific_breakthrough' : this.scientific_breakthrough_actn}
+          return ( Object.values(pos_events)[selection_number])
      }
      
 
@@ -159,7 +225,8 @@ class Lab extends React.Component {
           } = this.state
 
           if (this.dice_roll(0.25)) {
-               let s_event = this.select_event()
+               this.select_event()(this)
+               //console.log(s_event)
           }
           this.set_locked_to_zero()
 
@@ -194,10 +261,10 @@ class Lab extends React.Component {
 
 
 
+
      add_item(thisState,concern,item,cost) {
           
           let cond = (thisState.budget.budget >= cost && thisState.lock.locked_obj[concern][item] == 'not_locked')
-          console.log(thisState.budget.budget,thisState.lock.locked_obj[concern][item])
           if (cond) {
                this.setState(prevState => {
                     let budget_ob = Object.assign({},thisState.budget)
