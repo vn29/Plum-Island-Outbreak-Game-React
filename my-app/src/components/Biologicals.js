@@ -23,10 +23,10 @@ class Biologicals extends React.Component {
           }) //[k,v]
           return(
                <div className = 'main_component'>
-                    <div>{this.constructor.name}:</div>
+                    <div>{this.constructor.name} under research:</div>
                     {this.list_bios(comp_props.biologicals)}
-                    <Researchtree         className = {this.props.lock_props.researchTree} comp_props         = {comp_2.researchTree} />
-                    <Biologicalproperties className = {this.props.lock_props.biologicalProperties} comp_props = {comp_2.biologicalProperties} />
+                    {/* <Researchtree         className = {this.props.lock_props.researchTree} comp_props         = {comp_2.researchTree} /> */}
+                    {/* <Biologicalproperties className = {this.props.lock_props.biologicalProperties} comp_props = {comp_2.biologicalProperties} /> */}
                     <Outbreakprogression  className = {this.props.lock_props.outbreakProgression} comp_props  = {comp_2.outbreakProgression} />
                </div>
           )

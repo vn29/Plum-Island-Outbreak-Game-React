@@ -39,7 +39,7 @@ class Lab_methods {
           return dep
      }
      budget_fx(dep,thisState,lock_state) {
-          dep['budget']       = dep['budget']  + 500000
+          dep['budget']       = dep['budget']  + 50000
                                + dep['grants'] 
                               // + dep['accounting'] 
                                - dep['salaries'] 
@@ -47,7 +47,7 @@ class Lab_methods {
                               // - dep['embezzlement']
 
           dep['grants']       = thisState.biologicals['biologicals'].length * 10000
-                              + thisState.employees['employees']  * 10000
+                              + thisState.employees['employees']  * 10000 * thisState.equipment.equipment/100
                                + thisState.facilities['facilities']  * 10000
 
           dep['accounting']   = dep['accounting'] 

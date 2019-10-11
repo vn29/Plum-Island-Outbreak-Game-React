@@ -37,10 +37,47 @@ class Lab extends React.Component {
           let biohazard = 1;
 
           let biologicals = {
-               biologicals: ['foot-and-mouth disease','mad-cow'],
+               biologicals: ['Foot-and-Mouth Disease'],
                researchTree: 1,
-               biologicalProperties: 1,
-               outbreakProgression: 10
+               biologicalProperties: {
+                    'Foot-and-Mouth Disease': {
+                         virulence : 0.8,
+                         vector:'air-borne',
+                         strain:['A', 'C', 'O', 'Asia 1', 'SAT 1', 'SAT 2','SAT 3'],
+                         zoonosis:'animal',
+                         human_lethality: 0.1,
+                         animal_lethality: 0.8
+                    },
+                    'West-Nile Virus': {
+                         virulence : 0.7,
+                         vector:'Arthropod-borne',
+                         strain:['lineage_1', 'lineage_2'],
+                         zoonosis:'human and animal',
+                         human_lethality: 0.2,
+                         animal_lethality: 0.8
+                    },
+                    'Lyme Disease': {
+                         virulence : 0.9,
+                         vector:'Arthropod-borne',
+                         strain:['B. burgdorferi s.s.',
+                                 'B. afzelii',
+                                 'B. garinii',
+                                 'B. valaisana',
+                                 'B. lusitaniae',
+                                 'B. andersoni',
+                                 '25015',
+                                 'DN127',
+                                 'CA55',
+                                 '25015',
+                                 'HK501',
+                                 'B. miyamotoi',
+                                 'B. japonica'],
+                         zoonosis:'human and animal',
+                         human_lethality: 0.2,
+                         animal_lethality: 0.8
+                    }
+               },
+               outbreakProgression: 0
           }
 
           let budget = {
@@ -60,7 +97,7 @@ class Lab extends React.Component {
           }
 
           let electricity = {
-               electricity: 100,
+               electricity: 90,
                freezers: 1,
                boilers: 1,
                backupGenerators: 1,
@@ -69,7 +106,7 @@ class Lab extends React.Component {
           }
 
           let employees = {
-               employees : 1,
+               employees : 5,
                scientists : 1,
                jrScientists : 1,
                srScientists : 1,
@@ -78,7 +115,7 @@ class Lab extends React.Component {
           }
 
           let equipment = {
-               equipment: 1,
+               equipment: 90,
                centrifuges: 1,
                freezers: 1,
                hotPlates: 1,
@@ -94,7 +131,9 @@ class Lab extends React.Component {
                workbenches: 1,
           }
 
-          let misc = {}
+          let misc = {
+               turn: 0,
+          }
 
           
 
@@ -108,7 +147,8 @@ class Lab extends React.Component {
                employees,
                equipment,
                facilities,
-               lock
+               lock,
+               misc
           }
           //set locked values to zero in the constructor
           this.set_locked_to_zero()
@@ -137,6 +177,18 @@ class Lab extends React.Component {
                     })
                }
           }
+     }
+
+
+
+
+     research_new_biological (lab,biological_name) {
+          lab.setState (prevState => {
+               let st = Object.assign({},lab.state)
+               st.biologicals.biologicals.push(biological_name)
+               return(st)
+          })
+          
      }
 
      hurricane_actn(lab) {
@@ -223,7 +275,8 @@ class Lab extends React.Component {
                employees,
                equipment,
                facilities,
-               lock
+               lock,
+               misc
           } = this.state
 
           if (this.dice_roll(0.25)) {
@@ -231,6 +284,7 @@ class Lab extends React.Component {
                //console.log(s_event)
           }
           this.set_locked_to_zero()
+          misc.turn += 1
 
           
           let lm = new Lab_methods()
@@ -261,9 +315,6 @@ class Lab extends React.Component {
      }
 
 
-
-
-
      add_item(thisState,concern,item,cost) {
           
           let cond = (thisState.budget.budget >= cost && thisState.lock.locked_obj[concern][item] == 'not_locked')
@@ -286,8 +337,6 @@ class Lab extends React.Component {
                this.setState(prevState => {
                     let preb = Object.assign({},prevState.budget)
                     preb.budget = prevState.budget.budget - cost
- 
-
                     return({biohazard : Math.min(4,prevState.biohazard + 1), budget: preb})
 
                })
@@ -298,8 +347,11 @@ class Lab extends React.Component {
 
           //some array will feed x. its oging to have the item and costs
           let x = Object.entries(item_cost).map((kv) => 
-               <Button variant = "secondary" size    = "sm" onClick = {() => this.add_item(thisState,concern,kv[0],kv[1])}
-               >add {kv[0]}</Button>
+               <Button variant = "secondary"
+                       size    = "sm"
+                       style   = {{backgroundColor:'darkgrey',borderRadius: '0px', width: 150}} 
+                       onClick = {() => this.add_item(thisState,concern,kv[0],kv[1])}
+               >{kv[0]}</Button>
           )
           return(x)
      }
@@ -320,7 +372,8 @@ class Lab extends React.Component {
                employees,
                equipment,
                facilities,
-               lock
+               lock,
+               misc
           } = this.state
           let lm = new Lab_methods()
 
@@ -330,30 +383,35 @@ class Lab extends React.Component {
                
                <div className = "main_display">
                     <div className = "component_display">
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.end_turn()}
+                         <Button variant = "primary" size    = "lg" onClick = {() => this.end_turn()}
                          >End Turn</Button>
                          <Button variant = "secondary" size    = "sm" onClick = {() => this.upgrade_biohazard_level(this.state,1000000)}
                          >upgrade biohazard level</Button>
-
+                         <div style = {{padding:5,}}>
                          {this.item_display(this.state,'employees',{
                                                                       'jrScientists': 8000,
                                                                       'scientists': 10000,
                                                                       'srScientists': 20000,
-                                                                      'facilitiesEngineer' : 5000,
+                                                                      'facilitiesEngineering' : 5000,
+                                                                      'administration' : 10000,
                                                                  })}
+                         </div>
+                         <div style = {{padding:5,}}>
                          {this.item_display(this.state,'airSystem',{
                                                                       'gaskets': 10000,
                                                                       'airPressure': 10000,
                                                                       'filters': 5000,
                                                                       'generatorFeeds': 100000,
                                                                  })}
-                                                                 
+                         </div>
+                         <div style = {{padding:5,}}>                                 
                          {this.item_display(this.state,'decontamination',{
                                                                       'suits': 5000,
                                                                       'showers': 10000,
                                                                       'protocols': 10000,
                                                                  })}
-                                                                 
+                         </div>   
+                         <div style = {{padding:5,}}>                                       
                          {this.item_display(this.state,'electricity',{
                                                                       'freezers': 200000,
                                                                       'boilers': 300000,
@@ -361,7 +419,8 @@ class Lab extends React.Component {
                                                                       'aboveGroundLines': 100000,
                                                                       'belowGroundLines': 100000,
                                                                  })}
-                                                                 
+                         </div> 
+                         <div style = {{padding:5,}}>                                   
                          {this.item_display(this.state,'equipment',{
                                                                       'centrifuges': 20000,
                                                                       'freezers': 30000,
@@ -370,19 +429,20 @@ class Lab extends React.Component {
                                                                       'incubators': 10000,
                                                                       'pipettes' : 500
                                                                  })}
-                                                                 
-                                                                 
+                         </div>                                       
+                         <div style = {{padding:5,}}>                                        
                          {this.item_display(this.state,'facilities',{
                                                                       'storage': 100000,
                                                                       'safetyShowers': 50000,
                                                                       'workbenches': 20000,
                                                                  })}
-
+                         </div>
                          <Button variant = "secondary" size    = "sm" onClick = {() => this.unlock_concern('employees','srScientists')}>unlock scientist</Button>
 
                     </div>
                     <div className = "component_display">
                          <div className = "inter_display">
+                              <div className = 'main_component'>turn: {misc.turn}</div>
                               <Biohazardlevel className = "main_component" comp_props = {biohazard}  lock_props={lock.locked_obj.biohazard} />
                          </div>
                          <div className = "inter_display">
