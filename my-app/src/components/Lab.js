@@ -133,6 +133,7 @@ class Lab extends React.Component {
 
           let misc = {
                turn: 0,
+               status: '',
           }
 
           
@@ -167,12 +168,90 @@ class Lab extends React.Component {
      set_locked_to_zero () {
           for (let state_obs of Object.keys(this.state)) { // for each category of concern
                if (state_obs !== 'biohazard' && state_obs !== 'lock' && state_obs !== 'misc') { //except for the biohazard and lock categories
-                    let aslockobject = this.state.lock.locked_obj[state_obs] //grab the locked state. either 'locked' or 'not_locked'
-                    Object.entries(state_obs).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
+                    let aslockobject = this.state.lock.locked_obj[state_obs] //grab the locked state. either 'locked' or 'not_locked
+                    Object.entries(this.state[state_obs]).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
+                         //console.log(kv)
+                         console.log(kv)
                          let k = kv[0] //this is just the key name so we can access the locked objects sub category of concern
                          let islock = aslockobject[k]  //sub category of concerns locked state
                          if (islock == 'locked') { //check if the sub category of concern is locked and then set the value to zero if it is locked
-                              state_obs[k] = 0
+                              this.state[state_obs][k] = 0
+                         }
+                    })
+               }
+          }
+     }
+
+     set_locked_to_biohazard_2 () {
+          for (let state_obs of Object.keys(this.state)) { // for each category of concern
+               if (state_obs !== 'biohazard' && state_obs !== 'lock' && state_obs !== 'misc') { //except for the biohazard and lock categories
+                    let aslockobject = this.state.lock.locked_obj[state_obs] //grab the locked state. either 'locked' or 'not_locked'
+                    Object.entries(this.state[state_obs]).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
+                         let k = kv[0] //this is just the key name so we can access the locked objects sub category of concern
+                         //console.log(k[0])
+                         let islock = aslockobject[k]  //sub category of concerns locked state
+                         if (k == 'filters') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'aboveGroundLines') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'freezers') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'storage') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                    })
+               }
+          }
+     }
+
+     set_locked_to_biohazard_3 () {
+          for (let state_obs of Object.keys(this.state)) { // for each category of concern
+               if (state_obs !== 'biohazard' && state_obs !== 'lock' && state_obs !== 'misc') { //except for the biohazard and lock categories
+                    let aslockobject = this.state.lock.locked_obj[state_obs] //grab the locked state. either 'locked' or 'not_locked'
+                    Object.entries(this.state[state_obs]).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
+                         let k = kv[0] //this is just the key name so we can access the locked objects sub category of concern
+                         let islock = aslockobject[k]  //sub category of concerns locked state
+                         if (k == 'generatorFeeds') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'showers') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'backupGenerators') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'srScientists') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'safetyShowers') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                    })
+               }
+          }
+     }
+
+     set_locked_to_biohazard_4 () {
+          for (let state_obs of Object.keys(this.state)) { // for each category of concern
+               if (state_obs !== 'biohazard' && state_obs !== 'lock' && state_obs !== 'misc') { //except for the biohazard and lock categories
+                    let aslockobject = this.state.lock.locked_obj[state_obs] //grab the locked state. either 'locked' or 'not_locked'
+                    Object.entries(this.state[state_obs]).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
+                         let k = kv[0] //this is just the key name so we can access the locked objects sub category of concern
+                         let islock = aslockobject[k]  //sub category of concerns locked state
+                         if (k == 'suits') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'boilers') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'hotPlates') {
+                              aslockobject[k] = 'not_locked'
+                         }
+                         if (k == 'tickColonies') {
+                              aslockobject[k] = 'not_locked'
                          }
                     })
                }
@@ -260,6 +339,7 @@ class Lab extends React.Component {
                                    'decontamination_failure' : this.decontamination_failure_actn,
                                    'botched_lab_results' : this.botched_lab_results_actn,
                                    'scientific_breakthrough' : this.scientific_breakthrough_actn}
+          this.state.misc.status = Object.keys(pos_events)[selection_number] + ' on turn ' + this.state.misc.turn
           return ( Object.values(pos_events)[selection_number])
      }
      
@@ -333,20 +413,26 @@ class Lab extends React.Component {
      }
 
      upgrade_biohazard_level (thisState,cost) {
-          if ( thisState.budget.budget >= cost && thisState.biohazard < 4)
+          if ( thisState.budget.budget >= cost && thisState.biohazard < 4){
+               let new_biolvl = Math.min(4,thisState.biohazard + 1)
+               if (new_biolvl == 2) {this.set_locked_to_biohazard_2()}
+               if (new_biolvl == 3) {this.set_locked_to_biohazard_3()}
+               if (new_biolvl == 4) {this.set_locked_to_biohazard_4()}
                this.setState(prevState => {
                     let preb = Object.assign({},prevState.budget)
                     preb.budget = prevState.budget.budget - cost
-                    return({biohazard : Math.min(4,prevState.biohazard + 1), budget: preb})
+                    return({biohazard : new_biolvl, budget: preb})
 
                })
+          }
      }
 
 
      item_display(thisState,concern,item_cost) {
 
           //some array will feed x. its oging to have the item and costs
-          let x = Object.entries(item_cost).map((kv) => 
+          let myary = Object.entries(item_cost).filter((item) =>thisState.lock.locked_obj[concern][item[0]] == 'not_locked')
+          let x = myary.map((kv) => 
                <Button variant = "secondary"
                        size    = "sm"
                        style   = {{backgroundColor:'darkgrey',borderRadius: '0px', width: 150}} 
@@ -441,10 +527,9 @@ class Lab extends React.Component {
 
                     </div>
                     <div className = "component_display">
-                         <div className = "inter_display">
-                              <div className = 'main_component'>turn: {misc.turn}</div>
+                         <div className = 'main_component'>turn: {misc.turn}</div>
+                              <div className = 'main_component'>status message: {misc.status}</div>
                               <Biohazardlevel className = "main_component" comp_props = {biohazard}  lock_props={lock.locked_obj.biohazard} />
-                         </div>
                          <div className = "inter_display">
                               <Biologicals     className = "main_component" comp_props = {biologicals}  lock_props={lock.locked_obj.biologicals}/>
                               <Budget          className = "main_component" comp_props = {budget}  lock_props={lock.locked_obj.budget}/>
