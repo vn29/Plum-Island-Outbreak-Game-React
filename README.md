@@ -24,9 +24,9 @@ general air systems such as duct work and ventilations.
 sealants around doors and vents that prevent penetrations through the enclosure of the facility.
 ### airPressure: not locked
 air pressure control systems that maintain negaive air pressure of the enclosed facility to the outside. Especially in hot zones.
-### filters: locked
+### filters: locked (biohazard level: 2)
 air filtration systems that provide an additional measure against airborne vectors in the case of an incident.
-### generatorFeeds: locked
+### generatorFeeds: locked (biohazard level: 3)
 provides additional backup power in the case of a loss of main power to the air pressure system. loss of the negative air pressure system would be catastrophic.
 
 ## Biologicals
@@ -59,9 +59,9 @@ direct access to cash with the possibility of fines and penalties if caught. Hir
 measure to reduce and prevent an outbreak.
 ### decontamination: not locked
 funds directed towards decontamination will reduce the possiblities for the initial origin of an outbreak from within the lab
-### suits: locked
+### suits: locked (biohazard level: 4)
 suits provide an extra measure to maintain the health of the staff granted the virus is not resistant to this form of decontamination
-### showers: locked
+### showers: locked (biohazard level: 3)
 reduces viruses progression during an outbreak granted the virus is not resistant to this form of decontamination
 ### protocols: not locked
 reduces outbreak progression granted there is not a breach of protocol event.
@@ -72,11 +72,11 @@ required resource to maintain essential research equipment and biohazard safety.
 the main resource with the number representing the likelyhood of a power outage. A power outage during an outbreak situation can be dangerous and lapse many safety measures in place.
 ### freezers: not locked
 increase research efficiency and provide a safegaurd against uncontrolled growth of a biological culture.
-### boilers: locked
+### boilers: locked (biohazard level: 4)
 power hungry and very important to the appropriate decontamination of waste water from the facility. required for more advanced forms of research.
-### backupGenerators: locked
+### backupGenerators: locked (biohazard level: 3)
 provide reduced risks of a loss of power occuring
-### aboveGroundLines: locked
+### aboveGroundLines: locked (biohazard level: 2)
 provide reduced risks of a loss of power occuring
 ### belowGroundLines: not locked
 provide reduced risks of a loss of power occuring. not vulnerable to storms.
@@ -89,7 +89,7 @@ total number of employees
 number of scientists of staff
 ### jrScientists : not locked
 number of jr scientists of staff
-### srScientists : locked
+### srScientists : locked (biohazard level: 3)
 number of sr scientists of staff. locked at beginning of game and must be hired. provide significant research advancement.
 ### facilitiesEngineering : not locked
 number of facilities engineering staff that provide decontamination and preventative measures.
@@ -102,13 +102,13 @@ esential research equipment used by scientists to increase their research produc
 provides a status indicator of the efficiency of current equipment
 ### centrifuges: not locked
 increases research efficiency. dependent on power.
-### freezers: locked
+### freezers: locked (biohazard level: 2)
 increases research efficiency. dependent on power.
-### hotPlates: locked
+### hotPlates: locked (biohazard level: 4)
 increases research efficiency. dependent on power. requires jr scientists on staff
-### tickColonies: locked
+### tickColonies: locked (biohazard level: 4)
 increases research efficiency. dependent on power. requires sr scientists on staff
-### incubators: locked
+### incubators: locked (biohazard level: 3)
 increases research efficiency. dependent on power. requires scientists on staff
 ### pipettes: not locked
 increases resarch efficiency
@@ -117,9 +117,9 @@ increases resarch efficiency
 provide neccesary workspaces and area for decontamination
 ### facilities: not locked
 provides a status indicator of the efficiency of current facilities
-### storage: locked
+### storage: locked (biohazard level: 2)
 provides research efficiency and improved decontamination to prevent progression of an outbreak
-### safetyShowers: locked
+### safetyShowers: locked (biohazard level: 3)
 improves safety against a biological outbreak. required for some biohazard levels
 ### workbenches: not locked
 provides improved research efficiency
