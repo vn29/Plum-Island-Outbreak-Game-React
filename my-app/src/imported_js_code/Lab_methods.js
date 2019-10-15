@@ -23,7 +23,7 @@ class Lab_methods {
           dep['biologicals']          = dep['biologicals']
           //dep['researchTree']         = dep['researchTree']
           //dep['biologicalProperties'] = dep['biologicalProperties']
-          dep['outbreakProgression']  = Math.max(0,dep['outbreakProgression']
+          dep['outbreakProgression']  = Math.max(0,dep['outbreakProgression'] + dep['biologicalProperties']
                                         -0.1*thisState.airSystem['airPressure']
                                         -0.1*thisState.airSystem['filters']       
                                         -0.1*thisState.airSystem['generatorFeeds']
@@ -40,13 +40,13 @@ class Lab_methods {
      }
      budget_fx(dep,thisState,lock_state) {
           dep['budget']       = dep['budget']  + 50000
-                               + dep['grants'] 
+                               + dep['grants']
                               // + dep['accounting'] 
                                - dep['salaries'] 
                               // - dep['kickbacks'] 
                               // - dep['embezzlement']
 
-          dep['grants']       = thisState.biologicals['biologicals'].length * 10000
+          dep['grants']       = 10000*thisState.biologicals['biologicalProperties']
                               + thisState.employees['employees']  * 10000 * thisState.equipment.equipment/100
                                + thisState.facilities['facilities']  * 10000
 

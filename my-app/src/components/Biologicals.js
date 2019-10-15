@@ -26,7 +26,7 @@ class Biologicals extends React.Component {
                     <div>{this.constructor.name} under research:</div>
                     {this.list_bios(comp_props.biologicals)}
                     {/* <Researchtree         className = {this.props.lock_props.researchTree} comp_props         = {comp_2.researchTree} /> */}
-                    {/* <Biologicalproperties className = {this.props.lock_props.biologicalProperties} comp_props = {comp_2.biologicalProperties} /> */}
+                     <Biologicalproperties className = {this.props.lock_props.biologicalProperties} comp_props = {comp_2.biologicalProperties} />
                     <Outbreakprogression  className = {this.props.lock_props.outbreakProgression} comp_props  = {comp_2.outbreakProgression} />
                </div>
           )

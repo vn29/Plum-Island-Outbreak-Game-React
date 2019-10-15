@@ -39,44 +39,7 @@ class Lab extends React.Component {
           let biologicals = {
                biologicals: ['Foot-and-Mouth Disease'],
                researchTree: 1,
-               biologicalProperties: {
-                    'Foot-and-Mouth Disease': {
-                         virulence : 0.8,
-                         vector:'air-borne',
-                         strain:['A', 'C', 'O', 'Asia 1', 'SAT 1', 'SAT 2','SAT 3'],
-                         zoonosis:'animal',
-                         human_lethality: 0.1,
-                         animal_lethality: 0.8
-                    },
-                    'West-Nile Virus': {
-                         virulence : 0.7,
-                         vector:'Arthropod-borne',
-                         strain:['lineage_1', 'lineage_2'],
-                         zoonosis:'human and animal',
-                         human_lethality: 0.2,
-                         animal_lethality: 0.8
-                    },
-                    'Lyme Disease': {
-                         virulence : 0.9,
-                         vector:'Arthropod-borne',
-                         strain:['B. burgdorferi s.s.',
-                                 'B. afzelii',
-                                 'B. garinii',
-                                 'B. valaisana',
-                                 'B. lusitaniae',
-                                 'B. andersoni',
-                                 '25015',
-                                 'DN127',
-                                 'CA55',
-                                 '25015',
-                                 'HK501',
-                                 'B. miyamotoi',
-                                 'B. japonica'],
-                         zoonosis:'human and animal',
-                         human_lethality: 0.2,
-                         animal_lethality: 0.8
-                    }
-               },
+               biologicalProperties: 0,
                outbreakProgression: 0
           }
 
@@ -189,7 +152,6 @@ class Lab extends React.Component {
                     Object.entries(this.state[state_obs]).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
                          let k = kv[0] //this is just the key name so we can access the locked objects sub category of concern
                          //console.log(k[0])
-                         let islock = aslockobject[k]  //sub category of concerns locked state
                          if (k == 'filters') {
                               aslockobject[k] = 'not_locked'
                          }
@@ -207,13 +169,41 @@ class Lab extends React.Component {
           }
      }
 
+     research_new_biologicals(thisState) {
+          if (thisState.budget.budget >= 100000 && thisState.biologicals.biologicalProperties <4) {
+               this.setState(prevState => {
+                    let State = Object.assign({},prevState)
+                    State.budget.budget = prevState.budget.budget - 100000
+                    State.biologicals.biologicalProperties =  Math.min(4,thisState.biologicals.biologicalProperties + 1)
+                    if (State.biologicals.biologicalProperties == 1) {
+                         this.state.biologicals.biologicals.push('West-Nile Virus')
+
+                    }
+                    if (State.biologicals.biologicalProperties == 2) {
+                         this.state.biologicals.biologicals.push('Lyme Disease')
+                    }
+
+                    if (State.biologicals.biologicalProperties == 3) {
+                         this.state.biologicals.biologicals.push('Hemorrhagic Fever')
+                    }
+
+                    if (State.biologicals.biologicalProperties == 4) {
+                         this.state.biologicals.biologicals.push('Mad Cow Disease')
+                    }
+                    return(State)
+                    
+               })
+
+
+          }
+     }
+
      set_locked_to_biohazard_3 () {
           for (let state_obs of Object.keys(this.state)) { // for each category of concern
                if (state_obs !== 'biohazard' && state_obs !== 'lock' && state_obs !== 'misc') { //except for the biohazard and lock categories
                     let aslockobject = this.state.lock.locked_obj[state_obs] //grab the locked state. either 'locked' or 'not_locked'
                     Object.entries(this.state[state_obs]).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
                          let k = kv[0] //this is just the key name so we can access the locked objects sub category of concern
-                         let islock = aslockobject[k]  //sub category of concerns locked state
                          if (k == 'generatorFeeds') {
                               aslockobject[k] = 'not_locked'
                          }
@@ -240,7 +230,6 @@ class Lab extends React.Component {
                     let aslockobject = this.state.lock.locked_obj[state_obs] //grab the locked state. either 'locked' or 'not_locked'
                     Object.entries(this.state[state_obs]).forEach(kv => {  // i is [key,value] of the category of concerns sub topic
                          let k = kv[0] //this is just the key name so we can access the locked objects sub category of concern
-                         let islock = aslockobject[k]  //sub category of concerns locked state
                          if (k == 'suits') {
                               aslockobject[k] = 'not_locked'
                          }
@@ -259,17 +248,6 @@ class Lab extends React.Component {
      }
 
 
-
-
-     research_new_biological (lab,biological_name) {
-          lab.setState (prevState => {
-               let st = Object.assign({},lab.state)
-               st.biologicals.biologicals.push(biological_name)
-               return(st)
-          })
-          
-     }
-
      hurricane_actn(lab) {
           lab.setState(prevState => {
                
@@ -281,12 +259,16 @@ class Lab extends React.Component {
      }
      staff_contraction_actn(lab) {
           if (lab.state.budget.budget >= 10000){
-               lab.state.budget.budget -= 10000
+               this.setState(prevState => {
+                    let State = Object.assign({},prevState)
+                    State.biologicals.outbreakProgression = prevState.biologicals.outbreakProgression + 2
+                    return(State)
+               })
           }
      }
      budget_cuts_atcn(lab) {
-          if (lab.state.budget.budget >= 10000){
-               lab.state.budget.budget -= 10000
+          if (lab.state.budget.budget >= 100000){
+               lab.state.budget.budget -= 100000
           }
      }
      scientists_quit_actn(lab) {
@@ -319,8 +301,12 @@ class Lab extends React.Component {
 
      }
      botched_lab_results_actn(lab) {
-          if (lab.state.budget.budget >= 10000){
-               lab.state.budget.budget -= 10000
+          if (lab.state.biologicals.biologicalProperties >= 1){
+               this.setState(prevState => {
+                    let State = Object.assign({},prevState)
+                    State.biologicals.biologicalProperties = prevState.biologicals.biologicalProperties -1
+                    return(State)
+               })
           }
      }
      
@@ -358,6 +344,14 @@ class Lab extends React.Component {
                lock,
                misc
           } = this.state
+
+          if ( biologicals.outbreakProgression >= 10) {
+               this.setState(prevState => {
+                    let State = Object.assign({},prevState)
+                    State.budget.budget = prevState.budget.budget - 1000000
+                    return(State)
+               })
+          }
 
           if (this.dice_roll(0.25)) {
                this.select_event()(this)
@@ -523,7 +517,7 @@ class Lab extends React.Component {
                                                                       'workbenches': 20000,
                                                                  })}
                          </div>
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.unlock_concern('employees','srScientists')}>unlock scientist</Button>
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.research_new_biologicals(this.state)}>Research New Biological</Button>
 
                     </div>
                     <div className = "component_display">
