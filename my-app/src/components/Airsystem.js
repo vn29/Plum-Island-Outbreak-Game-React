@@ -1,8 +1,5 @@
 import React from 'react';
 
-
-
-
 class Airsystem extends React.Component {
      render() {
           let comp_props = this.props.comp_props
