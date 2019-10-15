@@ -259,7 +259,7 @@ class Lab extends React.Component {
      }
      staff_contraction_actn(lab) {
           if (lab.state.budget.budget >= 10000){
-               this.setState(prevState => {
+               lab.setState(prevState => {
                     let State = Object.assign({},prevState)
                     State.biologicals.outbreakProgression = prevState.biologicals.outbreakProgression + 2
                     return(State)
@@ -302,7 +302,7 @@ class Lab extends React.Component {
      }
      botched_lab_results_actn(lab) {
           if (lab.state.biologicals.biologicalProperties >= 1){
-               this.setState(prevState => {
+               lab.setState(prevState => {
                     let State = Object.assign({},prevState)
                     State.biologicals.biologicalProperties = prevState.biologicals.biologicalProperties -1
                     return(State)
@@ -463,10 +463,12 @@ class Lab extends React.Component {
                
                <div className = "main_display">
                     <div className = "component_display">
-                         <Button variant = "primary" size    = "lg" onClick = {() => this.end_turn()}
+                         <Button variant = "secondary" size    = "lg" onClick = {() => this.end_turn()} style = {{backgroundColor:'darkgrey',borderRadius: '5px', border: 'solid', borderColor:'rgba(245, 222, 13, 0.89)', width: 150}}
                          >End Turn</Button>
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.upgrade_biohazard_level(this.state,1000000)}
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.upgrade_biohazard_level(this.state,1000000)} style = {{backgroundColor:'darkgrey',borderRadius: '5px', border: 'solid', borderColor:'rgba(245, 222, 13, 0.89)', width: 150}}
                          >upgrade biohazard level</Button>
+                         <Button variant = "secondary" size    = "sm" onClick = {() => this.research_new_biologicals(this.state)} style = {{backgroundColor:'darkgrey',borderRadius: '5px', border: 'solid', borderColor:'rgba(245, 222, 13, 0.89)', width: 150}}>Research New Biological</Button>
+                         <div className = "main_component"> Hire Or Purchase
                          <div style = {{padding:5,}}>
                          {this.item_display(this.state,'employees',{
                                                                       'jrScientists': 8000,
@@ -517,7 +519,8 @@ class Lab extends React.Component {
                                                                       'workbenches': 20000,
                                                                  })}
                          </div>
-                         <Button variant = "secondary" size    = "sm" onClick = {() => this.research_new_biologicals(this.state)}>Research New Biological</Button>
+                         </div>
+                         
 
                     </div>
                     <div className = "component_display">
