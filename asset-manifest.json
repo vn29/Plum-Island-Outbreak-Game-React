@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Plum-Island-Outbreak-Game-React/static/css/main.d1801c02.chunk.css",
+    "main.js": "/Plum-Island-Outbreak-Game-React/static/js/main.aa2a9ca5.chunk.js",
+    "main.js.map": "/Plum-Island-Outbreak-Game-React/static/js/main.aa2a9ca5.chunk.js.map",
+    "runtime-main.js": "/Plum-Island-Outbreak-Game-React/static/js/runtime-main.d438fad8.js",
+    "runtime-main.js.map": "/Plum-Island-Outbreak-Game-React/static/js/runtime-main.d438fad8.js.map",
+    "static/css/2.0624914a.chunk.css": "/Plum-Island-Outbreak-Game-React/static/css/2.0624914a.chunk.css",
+    "static/js/2.bc05e829.chunk.js": "/Plum-Island-Outbreak-Game-React/static/js/2.bc05e829.chunk.js",
+    "static/js/2.bc05e829.chunk.js.map": "/Plum-Island-Outbreak-Game-React/static/js/2.bc05e829.chunk.js.map",
+    "index.html": "/Plum-Island-Outbreak-Game-React/index.html",
+    "precache-manifest.278696168e9a6719de6cdad61253eda5.js": "/Plum-Island-Outbreak-Game-React/precache-manifest.278696168e9a6719de6cdad61253eda5.js",
+    "service-worker.js": "/Plum-Island-Outbreak-Game-React/service-worker.js",
+    "static/css/2.0624914a.chunk.css.map": "/Plum-Island-Outbreak-Game-React/static/css/2.0624914a.chunk.css.map",
+    "static/css/main.d1801c02.chunk.css.map": "/Plum-Island-Outbreak-Game-React/static/css/main.d1801c02.chunk.css.map",
+    "static/media/index.css": "/Plum-Island-Outbreak-Game-React/static/media/oSk3FOL-biohazard-wallpaper.777a7ce2.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d438fad8.js",
+    "static/css/2.0624914a.chunk.css",
+    "static/js/2.bc05e829.chunk.js",
+    "static/css/main.d1801c02.chunk.css",
+    "static/js/main.aa2a9ca5.chunk.js"
+  ]
+}
