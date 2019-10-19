@@ -145,38 +145,6 @@ class Lab extends React.Component {
 			}
 		}
 	}
-
-	set_locked_to_biohazard_2() {
-		for (let state_obs of Object.keys(this.state)) {
-			// for each category of concern
-			if (
-				state_obs !== "biohazard" &&
-				state_obs !== "lock" &&
-				state_obs !== "misc"
-			) {
-				//except for the biohazard and lock categories
-				let aslockobject = this.state.lock.locked_obj[state_obs]; //grab the locked state. either 'locked' or 'not_locked'
-				Object.entries(this.state[state_obs]).forEach(kv => {
-					// i is [key,value] of the category of concerns sub topic
-					let k = kv[0]; //this is just the key name so we can access the locked objects sub category of concern
-					//console.log(k[0])
-					if (k == "filters") {
-						aslockobject[k] = "not_locked";
-					}
-					if (k == "aboveGroundLines") {
-						aslockobject[k] = "not_locked";
-					}
-					if (k == "freezers") {
-						aslockobject[k] = "not_locked";
-					}
-					if (k == "storage") {
-						aslockobject[k] = "not_locked";
-					}
-				});
-			}
-		}
-	}
-
 	research_new_biologicals(thisState) {
 		if (
 			thisState.budget.budget >= 100000 &&
@@ -209,6 +177,39 @@ class Lab extends React.Component {
 			});
 		}
 	}
+
+	set_locked_to_biohazard_2() {
+		for (let state_obs of Object.keys(this.state)) {
+			// for each category of concern
+			if (
+				state_obs !== "biohazard" &&
+				state_obs !== "lock" &&
+				state_obs !== "misc"
+			) {
+				//except for the biohazard and lock categories
+				let aslockobject = this.state.lock.locked_obj[state_obs]; //grab the locked state. either 'locked' or 'not_locked'
+				Object.entries(this.state[state_obs]).forEach(kv => {
+					// i is [key,value] of the category of concerns sub topic
+					let k = kv[0]; //this is just the key name so we can access the locked objects sub category of concern
+					//console.log(k[0])
+					if (k == "filters") {
+						aslockobject[k] = "not_locked";
+					}
+					if (k == "aboveGroundLines") {
+						aslockobject[k] = "not_locked";
+					}
+					if (k == "freezers") {
+						aslockobject[k] = "not_locked";
+					}
+					if (k == "storage") {
+						aslockobject[k] = "not_locked";
+					}
+				});
+			}
+		}
+	}
+
+
 
 	set_locked_to_biohazard_3() {
 		for (let state_obs of Object.keys(this.state)) {
@@ -379,7 +380,7 @@ class Lab extends React.Component {
 			});
 		}
 
-		if (this.dice_roll(0.25)) {
+		if (this.dice_roll(0.1)) {
 			this.select_event()(this);
 			//console.log(s_event)
 		}

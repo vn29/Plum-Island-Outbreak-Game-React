@@ -68,17 +68,25 @@ class Kickbacks extends React.Component {
      };
 }
 
-class Embezzlement extends React.Component {
-     render() {
-          let comp_prop = this.props.comp_props
-          return(
-               <div className = {this.props.className}>
-                   {this.constructor.name} : {comp_prop}
-               </div>
-          );
-     };
-}
+// class Embezzlement extends React.Component {
+//      render() {
+//           let comp_prop = this.props.comp_props
+//           return(
+//                <div className = {this.props.className}>
+//                    {this.constructor.name} : {comp_prop}
+//                </div>
+//           );
+//      };
+// }
 
+const Embezzlement  = ({className, comp_props}) => {
+     return(
+          <div className = {className}>
+               {Embezzlement.displayName} : {comp_props}
+          </div>
+     )
+}
+Embezzlement.displayName = 'Embezzlement'
 
 
 export default Budget;

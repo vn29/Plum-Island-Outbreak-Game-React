@@ -23,7 +23,7 @@ class Locked {
 			accounting: "not_locked",
 			salaries: "not_locked",
 			kickbacks: "locked",
-			embezzlement: "locked"
+			embezzlement: "not_locked"
 		};
 
 		var decontamination = {
