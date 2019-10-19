@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Plum-Island-Outbreak-Game-React/precache-manifest.3203ad20508d0c576c8adb8eb392d7c5.js"
+  "/Plum-Island-Outbreak-Game-React/precache-manifest.29a8428c5d4a93c394d3508a1b3c6f6e.js"
 );
 
 self.addEventListener('message', (event) => {

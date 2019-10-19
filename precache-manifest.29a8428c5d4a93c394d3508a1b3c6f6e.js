@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ef03d61d2c1895b0217fa2f5b071644a",
+    "revision": "aa55273d5b5916b2f6105e86a6c3967d",
     "url": "/Plum-Island-Outbreak-Game-React/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Plum-Island-Outbreak-Game-React/static/css/2.0624914a.chunk.css"
   },
   {
-    "revision": "22830560df3e0b43cbcb",
+    "revision": "045f052be5c1ca53c3ed",
     "url": "/Plum-Island-Outbreak-Game-React/static/css/main.d1801c02.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Plum-Island-Outbreak-Game-React/static/js/2.bc05e829.chunk.js"
   },
   {
-    "revision": "22830560df3e0b43cbcb",
-    "url": "/Plum-Island-Outbreak-Game-React/static/js/main.bdde4dff.chunk.js"
+    "revision": "045f052be5c1ca53c3ed",
+    "url": "/Plum-Island-Outbreak-Game-React/static/js/main.ca63b1ba.chunk.js"
   },
   {
     "revision": "bf7b2f2d48514d2e2f9b",
