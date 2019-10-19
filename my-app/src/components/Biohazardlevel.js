@@ -9,7 +9,7 @@ class Biohazardlevel extends React.Component {
           let comp_props = this.props.comp_props
           return(
                <div className = {this.props.className}>
-                    {this.constructor.name} : {comp_props}
+                    Biohazard Level : {comp_props}
                </div>
           )
      };

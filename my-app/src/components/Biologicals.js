@@ -23,10 +23,10 @@ class Biologicals extends React.Component {
           }) //[k,v]
           return(
                <div className = 'main_component'>
-                    <div>{this.constructor.name} under research:</div>
+                    <div>Biologicals under research:</div>
                     {this.list_bios(comp_props.biologicals)}
                     {/* <Researchtree         className = {this.props.lock_props.researchTree} comp_props         = {comp_2.researchTree} /> */}
-                     <Biologicalproperties className = {this.props.lock_props.biologicalProperties} comp_props = {comp_2.biologicalProperties} />
+                     {/* <Biologicalproperties className = {this.props.lock_props.biologicalProperties} comp_props = {comp_2.biologicalProperties} /> */}
                     <Outbreakprogression  className = {this.props.lock_props.outbreakProgression} comp_props  = {comp_2.outbreakProgression} />
                </div>
           )
@@ -39,7 +39,7 @@ class Researchtree extends React.Component {
           let comp_prop = this.props.comp_props
           return(
                <div className = {this.props.className}>
-                   {this.constructor.name} : {comp_prop}
+                   Research Tree : {comp_prop}
                </div>
           );
      };
@@ -50,7 +50,7 @@ class Biologicalproperties extends React.Component {
           let comp_prop = this.props.comp_props
           return(
                <div className = {this.props.className}>
-                   {this.constructor.name} : {comp_prop}
+                   Biological Properties : {comp_prop}
                </div>
           );
      };
@@ -61,7 +61,7 @@ class Outbreakprogression extends React.Component {
           let comp_prop = this.props.comp_props
           return(
                <div className = {this.props.className}>
-                    {this.constructor.name} : {comp_prop}
+                    Outbreak Progression : {comp_prop}
                </div>
           );
      };

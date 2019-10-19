@@ -13,7 +13,7 @@ class Budget extends React.Component {
           }) //[k,v]
           return(
                <div className = 'main_component'>
-                    {this.constructor.name} : {comp_2.budget}
+                    Budget : {comp_2.budget}
                     <Accounting   className = {this.props.lock_props.accounting} comp_props = {comp_2.accounting} />
                     <Salaries     className = {this.props.lock_props.salaries} comp_props = {comp_2.salaries} />
                     <Kickbacks    className = {this.props.lock_props.kickbacks} comp_props = {comp_2.kickbacks} />
@@ -29,7 +29,7 @@ class Accounting extends React.Component {
           let comp_prop = this.props.comp_props
           return(
                <div className = {this.props.className}>
-                   {this.constructor.name} : {comp_prop}
+                   Accounting : {comp_prop}
                </div>
           );
      };
@@ -40,7 +40,7 @@ class Grants extends React.Component {
           let comp_prop = this.props.comp_props
           return(
                <div className = {this.props.className}>
-                   {this.constructor.name} : {comp_prop}
+                   Grants : {comp_prop}
                </div>
           );
      };
@@ -51,7 +51,7 @@ class Salaries extends React.Component {
           let comp_prop = this.props.comp_props
           return(
                <div className = {this.props.className}>
-                   {this.constructor.name} : {comp_prop}
+                   Salaries : {comp_prop}
                </div>
           );
      };
@@ -62,7 +62,7 @@ class Kickbacks extends React.Component {
           let comp_prop = this.props.comp_props
           return(
                <div className = {this.props.className}>
-                   {this.constructor.name} : {comp_prop}
+                   Kickbacks : {comp_prop}
                </div>
           );
      };
@@ -73,7 +73,7 @@ class Kickbacks extends React.Component {
 //           let comp_prop = this.props.comp_props
 //           return(
 //                <div className = {this.props.className}>
-//                    {this.constructor.name} : {comp_prop}
+//                    **** : {comp_prop}
 //                </div>
 //           );
 //      };
@@ -82,11 +82,11 @@ class Kickbacks extends React.Component {
 const Embezzlement  = ({className, comp_props}) => {
      return(
           <div className = {className}>
-               {Embezzlement.displayName} : {comp_props}
+               Embezzlement : {comp_props}
           </div>
      )
 }
-Embezzlement.displayName = 'Embezzlement'
+
 
 
 export default Budget;
