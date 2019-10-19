@@ -65,7 +65,7 @@ class Lab extends React.Component {
 		};
 
 		let employees = {
-			employees: 5,
+			employees: 4,
 			scientists: 1,
 			jrScientists: 1,
 			srScientists: 1,
@@ -354,10 +354,11 @@ class Lab extends React.Component {
 			botched_lab_results: this.botched_lab_results_actn,
 			scientific_breakthrough: this.scientific_breakthrough_actn
 		};
-		this.state.misc.status =
-			Object.keys(pos_events)[selection_number] +
-			" on turn " +
-			this.state.misc.turn;
+		this.setState(prevState => {
+			let misc = Object.assign({}, prevState.misc)
+			misc.status = Object.keys(pos_events)[selection_number] + " on turn " + prevState.misc.turn;
+			return ({misc})
+		})
 		return Object.values(pos_events)[selection_number];
 	}
 
@@ -407,9 +408,10 @@ class Lab extends React.Component {
 		this.setState(prevState => {
 			Object.keys(this.state).forEach(k => {
 				if (k !== "biohazard" && k !== "lock" && k !== "misc") {
+					let ns = Object.assign({},prevState[k])
 					dax.push(
 						lm.resource_changer(
-							prevState[k],
+							ns,
 							this.state,
 							fx_list[k],
 							lock[k]
@@ -492,7 +494,12 @@ class Lab extends React.Component {
 	}
 
 	unlock_concern(concern, item) {
-		this.state.lock.locked_obj[concern][item] = "not_locked";
+		this.setState(prevState => {
+			let nstate = Object.assign({}, prevState)
+			nstate.state.lock.locked_obj[concern][item] = "not_locked"
+
+			return(nstate)
+		})
 	}
 
 	render() {

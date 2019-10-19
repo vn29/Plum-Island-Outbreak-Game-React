@@ -1,16 +1,16 @@
 class Lab_methods {
      airSystem_fx (dep,thisState,lock_state) {
-          dep['airSystem'] = dep['airSystem'] 
-          dep['gaskets']        = dep['gaskets']
-          dep['airPressure']    = dep['airPressure']
-          dep['filters']        = dep['filters']
-          dep['generatorFeeds'] = dep['generatorFeeds']
+          dep['airSystem']      = thisState.airSystem['airSystem']
+          dep['gaskets']        = thisState.airSystem['gaskets']
+          dep['airPressure']    = thisState.airSystem['airPressure']
+          dep['filters']        = thisState.airSystem['filters']
+          dep['generatorFeeds'] = thisState.airSystem['generatorFeeds']
           return dep
      }
 
      biologicals_fx(dep,thisState,lock_state) {
-          dep['biologicals']          = dep['biologicals']
-          dep['outbreakProgression']  = Math.max(0,dep['outbreakProgression'] + dep['biologicalProperties']
+          dep['biologicals']          = thisState.biologicals['biologicals']
+          dep['outbreakProgression']  = Math.max(0,thisState.biologicals['outbreakProgression'] + thisState.biologicals['biologicalProperties']
                                         -0.1*thisState.airSystem['airPressure']
                                         -0.1*thisState.airSystem['filters']       
                                         -0.1*thisState.airSystem['generatorFeeds']
@@ -24,8 +24,8 @@ class Lab_methods {
           return dep
      }
      budget_fx(dep,thisState,lock_state) {
-          dep['budget']       = (dep['budget']  + 50000
-                               + dep['grants'])*(1000-thisState.misc.turn)/1000 - dep['salaries']
+          dep['budget']       = (thisState.budget['budget']  + 50000
+                               + thisState.budget['grants'])*(1000-thisState.misc.turn)/1000 - thisState.budget['salaries']
           dep['grants']       = 10000*thisState.biologicals['biologicalProperties']**2
                               + thisState.employees['employees']  * 10000 * thisState.equipment.equipment/100
                                + thisState.facilities['facilities']  * 10000
@@ -48,58 +48,58 @@ class Lab_methods {
                                 + thisState.employees['jrScientists'] * thisState.decontamination.suits/2*150
                                 + thisState.employees['scientists'] * thisState.decontamination.suits*150
                                 + thisState.employees['srScientists'] * thisState.decontamination.suits/2*1000
-          dep['accounting']   = dep['accounting'] 
+          dep['accounting']   = thisState.budget['accounting'] 
           dep['salaries']     = thisState.employees['scientists'] *10000
                                + thisState.employees['jrScientists'] *8000
                                + thisState.employees['srScientists']  *20000
                                + thisState.employees['facilitiesEngineering']  *5000
                                + thisState.employees['administration']* 15000
-           dep['kickbacks']    = dep['kickbacks']
-           dep['embezzlement'] = dep['embezzlement']
+           dep['kickbacks']    = thisState.budget['kickbacks']
+           dep['embezzlement'] = thisState.budget['embezzlement']
           return dep
      }
      decontamination_fx(dep,thisState,lock_state) {
           return dep
      }
      electricity_fx(dep,thisState,lock_state) {
-          dep['electricity']      = Math.min(90 + 0.1*dep['freezers'] + 0.1*dep['boilers'] + 0.1*dep['backupGenerators'] + 0.1*dep['aboveGroundLines'] + 0.1*dep['belowGroundLines'],100)
-          dep['freezers']         = dep['freezers']
-          dep['boilers']          = dep['boilers']
-          dep['backupGenerators'] = dep['backupGenerators']
-          dep['aboveGroundLines'] = dep['aboveGroundLines']
-          dep['belowGroundLines'] = dep['belowGroundLines']
+          dep['electricity']      = Math.min(90 + 0.1*thisState.electricity['freezers'] + 0.1*thisState.electricity['boilers'] + 0.1*thisState.electricity['backupGenerators'] + 0.1*thisState.electricity['aboveGroundLines'] + 0.1*thisState.electricity['belowGroundLines'],100)
+          dep['freezers']         = thisState.electricity['freezers']
+          dep['boilers']          = thisState.electricity['boilers']
+          dep['backupGenerators'] = thisState.electricity['backupGenerators']
+          dep['aboveGroundLines'] = thisState.electricity['aboveGroundLines']
+          dep['belowGroundLines'] = thisState.electricity['belowGroundLines']
           return dep
      }
      employees_fx(dep,thisState,lock_state) {
-          dep['employees']     = dep['scientists']
-                              + dep['jrScientists']
-                              + dep['srScientists']
-                              + dep['facilitiesEngineering']
-                              + dep['administration']
+          dep['employees']     = thisState.employees['scientists']
+                              + thisState.employees['jrScientists']
+                              + thisState.employees['srScientists']
+                              + thisState.employees['facilitiesEngineering']
+                              + thisState.employees['administration']
           return dep
      }
      equipment_fx(dep,thisState,lock_state) {
           dep['equipment']    = Math.min(100,90
-                               + 0.1*dep['centrifuges'] 
-                               + 0.1*dep['freezers'] 
-                               + 0.1*dep['hotPlates'] 
-                               + 0.1*dep['tickColonies'] 
-                               + 0.1*dep['incubators'] 
-                               + 0.1*dep['pipettes'])
-          dep['centrifuges']  = dep['centrifuges'] 
-          dep['freezers']     = dep['freezers'] 
-          dep['hotPlates']    = dep['hotPlates'] 
-          dep['tickColonies'] = dep['tickColonies'] 
-          dep['incubators']   = dep['incubators'] 
-          dep['pipettes']     = dep['pipettes'] 
+                               + 0.1*thisState.equipment['centrifuges'] 
+                               + 0.1*thisState.equipment['freezers'] 
+                               + 0.1*thisState.equipment['hotPlates'] 
+                               + 0.1*thisState.equipment['tickColonies'] 
+                               + 0.1*thisState.equipment['incubators'] 
+                               + 0.1*thisState.equipment['pipettes'])
+          dep['centrifuges']  = thisState.equipment['centrifuges'] 
+          dep['freezers']     = thisState.equipment['freezers'] 
+          dep['hotPlates']    = thisState.equipment['hotPlates'] 
+          dep['tickColonies'] = thisState.equipment['tickColonies'] 
+          dep['incubators']   = thisState.equipment['incubators'] 
+          dep['pipettes']     = thisState.equipment['pipettes'] 
 
           return dep
      }
      facilities_fx(dep,thisState,lock_state) {
-          dep['facilities']    = dep['facilities'] 
-          dep['storage']       = dep['storage'] 
-          dep['safetyShowers'] = dep['safetyShowers'] 
-          dep['workbenches']   = dep['workbenches'] 
+          dep['facilities']    = thisState.facilities['facilities'] 
+          dep['storage']       = thisState.facilities['storage'] 
+          dep['safetyShowers'] = thisState.facilities['safetyShowers'] 
+          dep['workbenches']   = thisState.facilities['workbenches'] 
 
           return dep
      }
