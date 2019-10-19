@@ -122,28 +122,32 @@ class Lab extends React.Component {
 	}
 
 	set_locked_to_zero() {
-		for (let state_obs of Object.keys(this.state)) {
-			// for each category of concern
-			if (
-				state_obs !== "biohazard" &&
-				state_obs !== "lock" &&
-				state_obs !== "misc"
-			) {
-				//except for the biohazard and lock categories
-				let aslockobject = this.state.lock.locked_obj[state_obs]; //grab the locked state. either 'locked' or 'not_locked
-				Object.entries(this.state[state_obs]).forEach(kv => {
-					// i is [key,value] of the category of concerns sub topic
-					//console.log(kv)
-					console.log(kv);
-					let k = kv[0]; //this is just the key name so we can access the locked objects sub category of concern
-					let islock = aslockobject[k]; //sub category of concerns locked state
-					if (islock == "locked") {
-						//check if the sub category of concern is locked and then set the value to zero if it is locked
-						this.state[state_obs][k] = 0;
-					}
-				});
+		this.setState( prevState => {
+			let nstate = Object.assign({}, prevState)
+			for (let state_obs of Object.keys(this.state)) {
+				// for each category of concern
+				if (
+					state_obs !== "biohazard" &&
+					state_obs !== "lock" &&
+					state_obs !== "misc"
+				) {
+					//except for the biohazard and lock categories
+					let aslockobject = this.state.lock.locked_obj[state_obs]; //grab the locked state. either 'locked' or 'not_locked
+					Object.entries(this.state[state_obs]).forEach(kv => {
+						// i is [key,value] of the category of concerns sub topic
+						//console.log(kv)
+						console.log(kv);
+						let k = kv[0]; //this is just the key name so we can access the locked objects sub category of concern
+						let islock = aslockobject[k]; //sub category of concerns locked state
+						if (islock === "locked") {
+							//check if the sub category of concern is locked and then set the value to zero if it is locked
+							nstate[state_obs][k] = 0;
+						}
+					});
+				}
 			}
-		}
+			return(nstate)
+		})
 	}
 	research_new_biologicals(thisState) {
 		if (
@@ -157,20 +161,20 @@ class Lab extends React.Component {
 					4,
 					thisState.biologicals.biologicalProperties + 1
 				);
-				if (thisState.biologicals.biologicalProperties == 1) {
+				if (thisState.biologicals.biologicalProperties === 1) {
 					nstate.biologicals.biologicals.push("West-Nile Virus");
 				}
-				if (thisState.biologicals.biologicalProperties == 2) {
+				if (thisState.biologicals.biologicalProperties === 2) {
 					nstate.biologicals.biologicals.push("Lyme Disease");
 				}
 
-				if (thisState.biologicals.biologicalProperties == 3) {
+				if (thisState.biologicals.biologicalProperties === 3) {
 					nstate.biologicals.biologicals.push(
 						"Hemorrhagic Fever"
 					);
 				}
 
-				if (thisState.biologicals.biologicalProperties == 4) {
+				if (thisState.biologicals.biologicalProperties === 4) {
 					nstate.biologicals.biologicals.push("Mad Cow Disease");
 				}
 				return nstate;
@@ -192,16 +196,16 @@ class Lab extends React.Component {
 					// i is [key,value] of the category of concerns sub topic
 					let k = kv[0]; //this is just the key name so we can access the locked objects sub category of concern
 					//console.log(k[0])
-					if (k == "filters") {
+					if (k === "filters") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "aboveGroundLines") {
+					if (k === "aboveGroundLines") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "freezers") {
+					if (k === "freezers") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "storage") {
+					if (k === "storage") {
 						aslockobject[k] = "not_locked";
 					}
 				});
@@ -224,19 +228,19 @@ class Lab extends React.Component {
 				Object.entries(this.state[state_obs]).forEach(kv => {
 					// i is [key,value] of the category of concerns sub topic
 					let k = kv[0]; //this is just the key name so we can access the locked objects sub category of concern
-					if (k == "generatorFeeds") {
+					if (k === "generatorFeeds") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "showers") {
+					if (k === "showers") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "backupGenerators") {
+					if (k === "backupGenerators") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "srScientists") {
+					if (k === "srScientists") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "safetyShowers") {
+					if (k === "safetyShowers") {
 						aslockobject[k] = "not_locked";
 					}
 				});
@@ -257,16 +261,16 @@ class Lab extends React.Component {
 				Object.entries(this.state[state_obs]).forEach(kv => {
 					// i is [key,value] of the category of concerns sub topic
 					let k = kv[0]; //this is just the key name so we can access the locked objects sub category of concern
-					if (k == "suits") {
+					if (k === "suits") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "boilers") {
+					if (k === "boilers") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "hotPlates") {
+					if (k === "hotPlates") {
 						aslockobject[k] = "not_locked";
 					}
-					if (k == "tickColonies") {
+					if (k === "tickColonies") {
 						aslockobject[k] = "not_locked";
 					}
 				});
@@ -430,7 +434,7 @@ class Lab extends React.Component {
 	add_item(thisState, concern, item, cost) {
 		let cond =
 			thisState.budget.budget >= cost &&
-			thisState.lock.locked_obj[concern][item] == "not_locked";
+			thisState.lock.locked_obj[concern][item] === "not_locked";
 		if (cond) {
 			this.setState(prevState => {
 				let budget_ob = Object.assign({}, thisState.budget);
@@ -448,13 +452,13 @@ class Lab extends React.Component {
 	upgrade_biohazard_level(thisState, cost) {
 		if (thisState.budget.budget >= cost && thisState.biohazard < 4) {
 			let new_biolvl = Math.min(4, thisState.biohazard + 1);
-			if (new_biolvl == 2) {
+			if (new_biolvl === 2) {
 				this.set_locked_to_biohazard_2();
 			}
-			if (new_biolvl == 3) {
+			if (new_biolvl === 3) {
 				this.set_locked_to_biohazard_3();
 			}
-			if (new_biolvl == 4) {
+			if (new_biolvl === 4) {
 				this.set_locked_to_biohazard_4();
 			}
 			this.setState(prevState => {
@@ -468,7 +472,7 @@ class Lab extends React.Component {
 	item_display(thisState, concern, item_cost) {
 		//some array will feed x. its oging to have the item and costs
 		let myary = Object.entries(item_cost).filter(
-			item => thisState.lock.locked_obj[concern][item[0]] == "not_locked"
+			item => thisState.lock.locked_obj[concern][item[0]] === "not_locked"
 		);
 		let x = myary.map(kv => (
 			<Button
