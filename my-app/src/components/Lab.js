@@ -110,6 +110,7 @@ class Lab extends React.Component {
 		};
 		//set locked values to zero in the constructor
 		this.set_locked_to_zero();
+		this.research_new_biologicals = this.research_new_biologicals.bind(this)
 	}
 
 	dice_roll(chance) {
@@ -182,29 +183,29 @@ class Lab extends React.Component {
 			thisState.biologicals.biologicalProperties < 4
 		) {
 			this.setState(prevState => {
-				let State = Object.assign({}, prevState);
-				State.budget.budget = prevState.budget.budget - 100000;
-				State.biologicals.biologicalProperties = Math.min(
+				let nstate = Object.assign({}, prevState);
+				nstate.budget.budget = prevState.budget.budget - 100000;
+				nstate.biologicals.biologicalProperties = Math.min(
 					4,
 					thisState.biologicals.biologicalProperties + 1
 				);
-				if (State.biologicals.biologicalProperties == 1) {
-					this.state.biologicals.biologicals.push("West-Nile Virus");
+				if (thisState.biologicals.biologicalProperties == 1) {
+					nstate.biologicals.biologicals.push("West-Nile Virus");
 				}
-				if (State.biologicals.biologicalProperties == 2) {
-					this.state.biologicals.biologicals.push("Lyme Disease");
+				if (thisState.biologicals.biologicalProperties == 2) {
+					nstate.biologicals.biologicals.push("Lyme Disease");
 				}
 
-				if (State.biologicals.biologicalProperties == 3) {
-					this.state.biologicals.biologicals.push(
+				if (thisState.biologicals.biologicalProperties == 3) {
+					nstate.biologicals.biologicals.push(
 						"Hemorrhagic Fever"
 					);
 				}
 
-				if (State.biologicals.biologicalProperties == 4) {
-					this.state.biologicals.biologicals.push("Mad Cow Disease");
+				if (thisState.biologicals.biologicalProperties == 4) {
+					nstate.biologicals.biologicals.push("Mad Cow Disease");
 				}
-				return State;
+				return nstate;
 			});
 		}
 	}
@@ -557,6 +558,7 @@ class Lab extends React.Component {
 					<div className="main_component">
 						{" "}
 						Hire Or Purchase
+						<div>Employees</div>
 						<div style={{ padding: 5 }}>
 							{this.item_display(this.state, "employees", {
 								jrScientists: 8000,
@@ -566,6 +568,7 @@ class Lab extends React.Component {
 								administration: 10000
 							})}
 						</div>
+						<div>Air System</div>
 						<div style={{ padding: 5 }}>
 							{this.item_display(this.state, "airSystem", {
 								gaskets: 10000,
@@ -574,6 +577,7 @@ class Lab extends React.Component {
 								generatorFeeds: 100000
 							})}
 						</div>
+						<div>Decontamination</div>
 						<div style={{ padding: 5 }}>
 							{this.item_display(this.state, "decontamination", {
 								suits: 5000,
@@ -581,6 +585,7 @@ class Lab extends React.Component {
 								protocols: 10000
 							})}
 						</div>
+						<div>Power</div>
 						<div style={{ padding: 5 }}>
 							{this.item_display(this.state, "electricity", {
 								freezers: 200000,
@@ -590,6 +595,7 @@ class Lab extends React.Component {
 								belowGroundLines: 100000
 							})}
 						</div>
+						<div>Equipment</div>
 						<div style={{ padding: 5 }}>
 							{this.item_display(this.state, "equipment", {
 								centrifuges: 20000,
@@ -600,6 +606,7 @@ class Lab extends React.Component {
 								pipettes: 500
 							})}
 						</div>
+						<div>Facilities</div>
 						<div style={{ padding: 5 }}>
 							{this.item_display(this.state, "facilities", {
 								storage: 100000,
