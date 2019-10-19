@@ -1,5 +1,5 @@
-# Plum-Island-Outbreak-Game-React (In Progress)
-
+# Plum-Island-Outbreak-Game-React (Finished)
+![](https://github.com/vn29/Plum-Island-Outbreak-Game-React/blob/master/my-app/src/example.PNG?raw=true)
 A react.js based resource game where you are the director of the famous Plum Island animal research facility where
 dangerous viruses are researched on a budget. Funding is tight in this government agency run by the US department of agriculture.
 It is your mission to try to keep the place running for as long as possible, researching ever more dangerous viruses in the hopes
